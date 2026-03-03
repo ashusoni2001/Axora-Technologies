@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+  --color-dark-950: #030712;
+  --color-dark-900: #0a1128;
+  --color-dark-800: #111827;
+  --color-dark-700: #1e293b;
+
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+
+  --color-accent-400: #34d399;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-dark-700) transparent;
+  }
+
+  ::selection {
+    background-color: oklch(from var(--color-primary-500) l c h / 30%);
+    color: white;
+  }
+}
+
+@utility glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(12px);
+}
+
+@utility glass-hover {
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.20);
+  }
+}
+
+@utility gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
