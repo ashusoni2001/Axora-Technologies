@@ -39,15 +39,13 @@ export default function Footer() {
               Connect
             </h3>
             <div className="flex gap-4">
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-slate-200 transition-colors"
+              <span
+                className="text-slate-600 opacity-40 cursor-not-allowed"
                 aria-label="GitHub"
+                title="Coming soon"
               >
                 <Github size={20} />
-              </a>
+              </span>
               <a
                 href="https://linkedin.com/"
                 target="_blank"

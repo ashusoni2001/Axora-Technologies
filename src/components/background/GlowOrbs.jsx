@@ -19,7 +19,7 @@ export default function GlowOrbs() {
         className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(251,191,36,0.06) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, -20, 0],

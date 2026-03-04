@@ -69,9 +69,10 @@ export default function Hero() {
           transition={{ delay: 0.55, duration: 0.6, ease }}
           className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
         >
-          With 5+ years of expertise in AI and software engineering, we help
-          businesses harness the power of artificial intelligence and
-          cutting-edge technology to transform their operations.
+          We help businesses harness the power of artificial intelligence and
+          cutting-edge technology. From intelligent automation to
+          production-grade AI systems, we deliver solutions that transform
+          operations and drive measurable outcomes.
         </motion.p>
 
         <motion.div

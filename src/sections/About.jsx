@@ -12,17 +12,17 @@ import {
 } from "../lib/animations";
 
 const stats = [
-  { end: 5, suffix: "+", label: "Years of Experience" },
-  { end: 50, suffix: "+", label: "Projects Delivered" },
-  { end: 20, suffix: "+", label: "AI Solutions Built" },
-  { end: 99, suffix: "%", label: "Client Satisfaction" },
+  { end: 22, suffix: "+", label: "Technologies in Stack" },
+  { end: 8, suffix: "+", label: "Service Domains" },
+  { end: 10, suffix: "+", label: "AI/ML Models Integrated" },
+  { end: 600, suffix: "+", label: "Automated Tests" },
 ];
 
 const differentiators = [
-  { icon: Shield, text: "Production-Grade Quality" },
-  { icon: Zap, text: "Rapid Delivery" },
-  { icon: Users, text: "Dedicated Support" },
-  { icon: RefreshCcw, text: "Iterative Approach" },
+  { icon: Shield, text: "Production-Grade Engineering" },
+  { icon: Zap, text: "Rapid Prototyping to Deployment" },
+  { icon: Users, text: "Dedicated Technical Partnership" },
+  { icon: RefreshCcw, text: "Agile & Iterative Delivery" },
 ];
 
 export default function About() {
@@ -43,18 +43,23 @@ export default function About() {
           className="space-y-6"
         >
           <motion.p variants={staggerChild} className="text-lg text-slate-300 leading-relaxed">
-            With over 5 years of hands-on experience in AI and software
-            engineering, Axora Technologies has been at the forefront of
-            building intelligent solutions that drive real business outcomes.
+            Axora Technologies specializes in designing and delivering
+            production-grade AI systems and full-stack software solutions. We
+            operate at the intersection of applied AI research and enterprise
+            software engineering — turning complex technical challenges into
+            scalable, deployable products.
           </motion.p>
           <motion.p variants={staggerChild} className="text-lg text-slate-400 leading-relaxed">
-            We don't just build software — we architect systems that think,
-            learn, and evolve. Our approach combines deep technical expertise
-            with strategic thinking to deliver solutions that scale.
+            Our methodology is rooted in rigorous engineering: from architecture
+            design and model selection to deployment pipelines and monitoring.
+            Every solution we deliver is built for reliability, performance, and
+            long-term maintainability.
           </motion.p>
           <motion.p variants={staggerChild} className="text-lg text-slate-400 leading-relaxed">
-            From startups to established enterprises, we partner with ambitious
-            teams to turn complex challenges into competitive advantages.
+            We partner with organizations to build intelligent systems that
+            create measurable business impact — whether it's automating
+            workflows, enabling real-time decision-making, or deploying
+            cutting-edge AI capabilities at scale.
           </motion.p>
         </motion.div>
 

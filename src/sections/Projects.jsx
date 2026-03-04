@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import SectionWrapper from "../components/ui/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";
@@ -13,7 +13,7 @@ export default function Projects() {
       <SectionHeading
         title="Featured Projects"
         accentWord="Projects"
-        subtitle="A selection of our open-source work and client solutions."
+        subtitle="Our proof-of-concept builds and production-ready solutions."
       />
 
       <motion.div
@@ -38,17 +38,36 @@ export default function Projects() {
                   <Badge key={tag}>{tag}</Badge>
                 ))}
               </div>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-primary-400 transition-colors group/link"
-              >
-                <ExternalLink
-                  size={18}
-                  className="transition-transform duration-200 group-hover/link:rotate-12"
-                />
-              </a>
+              <div className="flex items-center gap-3">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-primary-400 transition-colors group/link"
+                    aria-label="View on GitHub"
+                  >
+                    <Github
+                      size={18}
+                      className="transition-transform duration-200 group-hover/link:rotate-12"
+                    />
+                  </a>
+                )}
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-accent-400 transition-colors group/demo"
+                    aria-label="View demo"
+                  >
+                    <ExternalLink
+                      size={18}
+                      className="transition-transform duration-200 group-hover/demo:rotate-12"
+                    />
+                  </a>
+                )}
+              </div>
             </div>
           </GlassCard>
         ))}

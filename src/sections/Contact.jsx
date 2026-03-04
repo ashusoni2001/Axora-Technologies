@@ -1,14 +1,8 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, Phone } from "lucide-react";
 import SectionWrapper from "../components/ui/SectionWrapper";
 import Button from "../components/ui/Button";
 import { fadeUp, viewportConfig } from "../lib/animations";
-
-const socials = [
-  { icon: Github, href: "https://github.com/", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:contact@axoratechnologies.in", label: "Email" },
-];
 
 export default function Contact() {
   return (
@@ -49,19 +43,23 @@ export default function Contact() {
           whileInView={fadeUp.animate}
           viewport={viewportConfig}
           transition={{ ...fadeUp.transition, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <Button href="mailto:contact@axoratechnologies.in" size="lg">
+          <Button
+            href="mailto:support@axoratechnologies.in?subject=New%20Project%20Inquiry&body=Hi%20Axora%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20new%20project.%0A%0AProject%20Details%3A%0A%0A"
+            size="lg"
+          >
             Start a Project
           </Button>
           <Button
-            href="https://github.com/"
+            href="https://linkedin.com/"
             variant="outline"
             size="lg"
             target="_blank"
             rel="noopener noreferrer"
+            icon={Linkedin}
           >
-            View GitHub
+            Connect on LinkedIn
           </Button>
         </motion.div>
 
@@ -70,27 +68,22 @@ export default function Contact() {
           whileInView={fadeUp.animate}
           viewport={viewportConfig}
           transition={{ ...fadeUp.transition, delay: 0.3 }}
-          className="flex justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-8 text-slate-400"
         >
-          {socials.map((social) => {
-            const Icon = social.icon;
-            return (
-              <a
-                key={social.label}
-                href={social.href}
-                target={social.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={
-                  social.href.startsWith("mailto")
-                    ? undefined
-                    : "noopener noreferrer"
-                }
-                className="text-slate-500 hover:text-slate-200 transition-colors"
-                aria-label={social.label}
-              >
-                <Icon size={22} />
-              </a>
-            );
-          })}
+          <a
+            href="mailto:support@axoratechnologies.in"
+            className="flex items-center gap-2 hover:text-slate-200 transition-colors"
+          >
+            <Mail size={18} />
+            <span className="text-sm">support@axoratechnologies.in</span>
+          </a>
+          <a
+            href="tel:+919654252335"
+            className="flex items-center gap-2 hover:text-slate-200 transition-colors"
+          >
+            <Phone size={18} />
+            <span className="text-sm">+91 9654252335</span>
+          </a>
         </motion.div>
       </div>
     </SectionWrapper>
