@@ -4,8 +4,10 @@ export const projects = [
     description:
       "A privacy-first, voice-controlled AI desktop agent that runs the entire voice pipeline — speech recognition, synthesis, and activity detection — on local GPU hardware, ensuring zero audio data leaves the device. Powered by Claude AI for intelligent reasoning, featuring real-time conversations, autonomous browser automation with multi-layer security, persistent cross-session memory, and a comprehensive web control panel.",
     tags: ["Python", "PyTorch", "Claude SDK", "FastAPI", "Whisper"],
-    github: "https://github.com/ashusoni2001/Project-JAAGI",
+    github: null,
     demo: null,
+    video: "https://drive.google.com/file/d/1c5ybObCh2I9zBZLYa_qXiylRecI9S6oy/view?usp=sharing",
+    comingSoon: false,
   },
   {
     title: "SafeRide — Real-Time Threat Detection",
@@ -14,13 +16,17 @@ export const projects = [
     tags: ["Python", "FastAPI", "Flutter", "PyTorch", "Whisper", "Llama"],
     github: null,
     demo: null,
+    video: null,
+    comingSoon: true,
   },
   {
     title: "AI Document Assistant",
     description:
       "A RAG-based chatbot that processes enterprise documents and provides intelligent answers with source citations.",
     tags: ["Python", "LangChain", "React", "FastAPI"],
-    github: "https://github.com/",
+    github: null,
     demo: null,
+    video: null,
+    comingSoon: true,
   },
 ];

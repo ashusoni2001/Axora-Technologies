@@ -48,6 +48,8 @@ export default function Contact() {
           <Button
             href="mailto:support@axoratechnologies.in?subject=New%20Project%20Inquiry&body=Hi%20Axora%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20new%20project.%0A%0AProject%20Details%3A%0A%0A"
             size="lg"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Start a Project
           </Button>

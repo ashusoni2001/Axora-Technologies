@@ -1,16 +1,67 @@
-# React + Vite
+# Axora Technologies — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI Engineering & Software Consultancy portfolio website.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** — UI framework
+- **Vite 7** — Build tool with HMR
+- **Tailwind CSS 4** — Utility-first styling (Navy + Gold theme)
+- **Framer Motion 12** — Animations and transitions
+- **Lucide React** — Icon library
+- **Space Grotesk** — Typography (Google Fonts)
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Start development server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── background/    — GlowOrbs, NeuralNetwork (decorative)
+│   ├── layout/        — Navbar, Footer
+│   └── ui/            — Button, GlassCard, Badge, SectionHeading, etc.
+├── sections/          — Hero, Services, About, Projects, TechStack, Contact
+├── data/              — Static content (projects, services, tech stack, nav)
+├── hooks/             — useActiveSection, useScrollDirection
+├── lib/               — Animation presets (Framer Motion)
+├── App.jsx            — Root component
+├── index.css          — Tailwind theme configuration
+└── main.jsx           — Entry point
+```
+
+## Deployment
+
+Optimized for **Vercel**. Push to GitHub and connect the repo — Vite is auto-detected.
+
+- **Build command:** `npm run build`
+- **Output directory:** `dist`
+- **No environment variables required** (static site)
+
+## Featured Projects
+
+- **Project JAAGI** — Privacy-first voice AI desktop agent
+- **SafeRide** — Real-time audio threat detection for ride-sharing safety
+- **AI Document Assistant** — RAG-based enterprise chatbot
+
+## Contact
+
+- **Email:** support@axoratechnologies.in
+- **Phone:** +91 9654252335

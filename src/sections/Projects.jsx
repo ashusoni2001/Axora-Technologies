@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Play } from "lucide-react";
 import SectionWrapper from "../components/ui/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";
@@ -39,6 +39,21 @@ export default function Projects() {
                 ))}
               </div>
               <div className="flex items-center gap-3">
+                {project.video && (
+                  <a
+                    href={project.video}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-primary-400 hover:text-primary-300 transition-colors group/video"
+                    aria-label="Know more"
+                  >
+                    <Play
+                      size={16}
+                      className="transition-transform duration-200 group-hover/video:scale-110"
+                    />
+                    Know more
+                  </a>
+                )}
                 {project.github && (
                   <a
                     href={project.github}
@@ -66,6 +81,11 @@ export default function Projects() {
                       className="transition-transform duration-200 group-hover/demo:rotate-12"
                     />
                   </a>
+                )}
+                {project.comingSoon && (
+                  <span className="text-sm text-slate-500 italic">
+                    Coming soon..
+                  </span>
                 )}
               </div>
             </div>
