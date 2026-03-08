@@ -3,7 +3,7 @@ export const projects = [
     title: "Project JAAGI — The Awakened One",
     description:
       "A privacy-first, voice-controlled AI desktop agent that runs the entire voice pipeline — speech recognition, synthesis, and activity detection — on local GPU hardware, ensuring zero audio data leaves the device. Powered by Claude AI for intelligent reasoning, featuring real-time conversations, autonomous browser automation with multi-layer security, persistent cross-session memory, and a comprehensive web control panel.",
-    tags: ["Python", "PyTorch", "Claude SDK", "FastAPI", "Whisper"],
+    tags: ["Python", "PyTorch", "Anthropic SDK", "FastAPI", "Whisper", "Kokoro", "Playwright"],
     github: null,
     demo: null,
     video: "https://drive.google.com/file/d/1c5ybObCh2I9zBZLYa_qXiylRecI9S6oy/view?usp=sharing",

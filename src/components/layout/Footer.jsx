@@ -46,17 +46,17 @@ export default function Footer() {
               >
                 <Github size={20} />
               </span>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-slate-200 transition-colors"
+              <span
+                className="text-slate-600 opacity-40 cursor-not-allowed"
                 aria-label="LinkedIn"
+                title="Coming soon"
               >
                 <Linkedin size={20} />
-              </a>
+              </span>
               <a
                 href="mailto:contact@axoratechnologies.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-400 hover:text-slate-200 transition-colors"
                 aria-label="Email"
               >

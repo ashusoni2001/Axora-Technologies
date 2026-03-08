@@ -54,12 +54,10 @@ export default function Contact() {
             Start a Project
           </Button>
           <Button
-            href="https://linkedin.com/"
             variant="outline"
             size="lg"
-            target="_blank"
-            rel="noopener noreferrer"
             icon={Linkedin}
+            className="opacity-40 cursor-not-allowed pointer-events-none"
           >
             Connect on LinkedIn
           </Button>
@@ -74,6 +72,8 @@ export default function Contact() {
         >
           <a
             href="mailto:support@axoratechnologies.in"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-slate-200 transition-colors"
           >
             <Mail size={18} />

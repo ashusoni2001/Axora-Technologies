@@ -3,7 +3,7 @@ import { ExternalLink, Github, Play } from "lucide-react";
 import SectionWrapper from "../components/ui/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";
-import Badge from "../components/ui/Badge";
+
 import { projects } from "../data/projects";
 import { staggerContainer, viewportConfig } from "../lib/animations";
 
@@ -32,12 +32,7 @@ export default function Projects() {
             <p className="text-sm text-slate-400 leading-relaxed mb-4 flex-1">
               {project.description}
             </p>
-            <div className="flex items-center justify-between">
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge key={tag}>{tag}</Badge>
-                ))}
-              </div>
+            <div className="flex items-center justify-end">
               <div className="flex items-center gap-3">
                 {project.video && (
                   <a
