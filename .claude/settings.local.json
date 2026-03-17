@@ -4,7 +4,13 @@
       "Bash(npm install:*)",
       "Bash(mkdir:*)",
       "Bash(npm run:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(ffprobe -v quiet -print_format json -show_format -show_streams \"A:/ML_WORK/ML_WORK/portfolio/src/assets/Video/Brain_Zoom_From_Moon_to_Neuron.mp4\")",
+      "Bash(python3 -c \":*)",
+      "Bash(python -c \":*)",
+      "Bash(where ffprobe:*)",
+      "Bash(where ffmpeg:*)",
+      "Bash(python:*)"
     ]
   }
 }
