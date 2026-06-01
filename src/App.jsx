@@ -1,25 +1,39 @@
 import Navbar from "./components/layout/Navbar";
-import Hero from "./sections/Hero";
-import Services from "./sections/Services";
-import About from "./sections/About";
-import Projects from "./sections/Projects";
-import TechStack from "./sections/TechStack";
-import Contact from "./sections/Contact";
 import Footer from "./components/layout/Footer";
+import ThemeSwitcher from "./components/layout/ThemeSwitcher";
+import NeuralCanvas from "./components/background/NeuralCanvas";
+import Hero from "./sections/Hero";
+import Marquee from "./sections/Marquee";
+import Expertise from "./sections/Expertise";
+import About from "./sections/About";
+import Work from "./sections/Work";
+import Contact from "./sections/Contact";
+import { usePalette } from "./hooks/usePalette";
 
 function App() {
+  const { enabled } = usePalette();
+
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <About />
-        <Projects />
-        <TechStack />
-        <Contact />
-      </main>
-      <Footer />
+      <div className="app-bg" />
+      <div className="app-grid" />
+      <NeuralCanvas />
+      <div className="app-noise" />
+
+      <div className="shell">
+        <Navbar />
+        <main>
+          <Hero />
+          <Marquee />
+          <Expertise />
+          <About />
+          <Work />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+
+      {enabled && <ThemeSwitcher />}
     </>
   );
 }

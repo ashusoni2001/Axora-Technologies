@@ -1,32 +1,26 @@
+/* `status` drives the badge: "live" lights the accent dot, anything else is muted.
+   `video` (optional) renders a "Watch" link. */
 export const projects = [
   {
     title: "Project JAAGI — The Awakened One",
-    description:
-      "A privacy-first, voice-controlled AI desktop agent that runs the entire voice pipeline — speech recognition, synthesis, and activity detection — on local GPU hardware, ensuring zero audio data leaves the device. Powered by Claude AI for intelligent reasoning, featuring real-time conversations, autonomous browser automation with multi-layer security, persistent cross-session memory, and a comprehensive web control panel.",
+    desc: "A privacy-first, voice-controlled AI desktop agent running the entire voice pipeline — speech recognition, synthesis and activity detection — on local GPU hardware, so zero audio leaves the device. Powered by Claude for reasoning, with autonomous browser automation, persistent cross-session memory and a web control panel.",
     tags: ["Python", "PyTorch", "Anthropic SDK", "FastAPI", "Whisper", "Kokoro", "Playwright"],
-    github: null,
-    demo: null,
+    status: "live",
+    statusLabel: "Live demo",
     video: "https://drive.google.com/file/d/1c5ybObCh2I9zBZLYa_qXiylRecI9S6oy/view?usp=sharing",
-    comingSoon: false,
   },
   {
     title: "SafeRide — Real-Time Threat Detection",
-    description:
-      "An AI-driven passenger safety platform for ride-sharing services, engineered for women's safety. Performs real-time audio threat detection using a multi-tier classification pipeline — from keyword spotting to LLM-powered contextual analysis. Features novel Real-Time Voice Fingerprint Matching (RVFM) for speaker identification, on-device speech recognition, and automatic emergency alert escalation supporting Hindi-English conversations.",
+    desc: "An AI-driven passenger-safety platform for ride-sharing, engineered for women's safety. Performs real-time audio threat detection through a multi-tier pipeline — from keyword spotting to LLM contextual analysis — with novel Real-Time Voice Fingerprint Matching and automatic emergency escalation across Hindi-English.",
     tags: ["Python", "FastAPI", "Flutter", "PyTorch", "Whisper", "Llama"],
-    github: null,
-    demo: null,
-    video: null,
-    comingSoon: true,
+    status: "soon",
+    statusLabel: "Coming soon",
   },
   {
     title: "AI Document Assistant",
-    description:
-      "A RAG-based chatbot that processes enterprise documents and provides intelligent answers with source citations.",
+    desc: "A RAG-based enterprise assistant that ingests internal documents and answers questions with precise, cited sources — grounding every response in your own knowledge base.",
     tags: ["Python", "LangChain", "React", "FastAPI"],
-    github: null,
-    demo: null,
-    video: null,
-    comingSoon: true,
+    status: "soon",
+    statusLabel: "Coming soon",
   },
 ];
