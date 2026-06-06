@@ -10,7 +10,11 @@
       "Bash(python -c \":*)",
       "Bash(where ffprobe:*)",
       "Bash(where ffmpeg:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(rm -v src/context/PaletteProvider.jsx src/hooks/usePalette.js)",
+      "Bash(ls -A src/context/)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_close"
     ]
   }
 }

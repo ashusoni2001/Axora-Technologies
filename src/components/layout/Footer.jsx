@@ -2,11 +2,8 @@ import Brand from "../ui/Logo";
 import Icon from "../ui/Icon";
 import { navLinks } from "../../data/navigation";
 import { contact } from "../../data/contact";
-import { usePalette } from "../../hooks/usePalette";
 
 export default function Footer() {
-  const { enabled, setEnabled } = usePalette();
-
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -54,18 +51,6 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Axora Technologies. All rights reserved.</span>
-        <label className="palette-switch" title="Show the live theme palette">
-          <span>Theme palette</span>
-          <input
-            type="checkbox"
-            checked={enabled}
-            onChange={(e) => setEnabled(e.target.checked)}
-          />
-          <span className="ps-track" aria-hidden="true">
-            <span className="ps-knob" />
-          </span>
-        </label>
-        <span>Designed & engineered in India.</span>
       </div>
     </footer>
   );

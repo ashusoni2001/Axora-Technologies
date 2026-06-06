@@ -30,10 +30,11 @@ src/
 - **Theming is runtime CSS variables** (`src/lib/theme.js`): 12 surface bases ×
   14 accents, 14 curated presets, persisted to `localStorage`, applied to `<html>`.
   Default = **Frost · Aurora** (light).
-- **Theme palette is opt-in, OFF by default** (`hooks/usePalette.js` + `context/PaletteProvider.jsx`):
-  the site ships locked on Frost · Aurora; a footer "Theme palette" switch reveals the
-  floating picker. `main.jsx` locks the default pre-render unless the visitor enabled it;
-  turning the switch off re-applies Frost · Aurora.
+- **Theme palette is a developer build flag, OFF by default** (`src/config.js` reads
+  `VITE_THEME_PALETTE`): the site ships locked on Frost · Aurora. Set `VITE_THEME_PALETTE=on`
+  in `.env` (local) or the Vercel env vars and redeploy to expose the floating picker
+  (`<ThemeSwitcher/>`, gated in `App.jsx`). `main.jsx` restores the saved theme only when the
+  flag is on; otherwise it applies Frost · Aurora pre-paint. **Not a user-facing toggle.**
 - Style via the semantic classes in `index.css` using the tokens
   (`--ink-*`, `--surface*`, `--line*`, `--accent*`, `--bg-*`) — **never hardcode colors**.
   Tailwind utilities are available for layout but the visual language lives in classes.

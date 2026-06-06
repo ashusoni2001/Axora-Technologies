@@ -8,11 +8,9 @@ import Expertise from "./sections/Expertise";
 import About from "./sections/About";
 import Work from "./sections/Work";
 import Contact from "./sections/Contact";
-import { usePalette } from "./hooks/usePalette";
+import { THEME_PALETTE_ENABLED } from "./config";
 
 function App() {
-  const { enabled } = usePalette();
-
   return (
     <>
       <div className="app-bg" />
@@ -33,7 +31,7 @@ function App() {
         <Footer />
       </div>
 
-      {enabled && <ThemeSwitcher />}
+      {THEME_PALETTE_ENABLED && <ThemeSwitcher />}
     </>
   );
 }
