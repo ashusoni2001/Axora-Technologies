@@ -70,7 +70,7 @@ export const BASES = {
          "--surface": "#ffffff", "--surface-2": "#f2f6fc", "--surface-solid": "#ffffff",
          "--line": "rgba(15,35,75,0.10)", "--line-strong": "rgba(15,35,75,0.18)", "--grid-line": "rgba(15,35,75,0.03)",
          "--ink-0": "#0c1626", "--ink-1": "#32445f", "--ink-2": "#61728c", "--ink-3": "#93a3bb",
-         "--shadow": "0 22px 48px -30px rgba(20,45,100,0.28)", "--noise-op": "0" } },
+         "--shadow": "0 22px 48px -30px rgba(20,45,100,0.28)", "--noise-op": "0.4" } },
   graphite: { name: "Graphite", swatch: "#e6e9ee", dark: false,
     v: { "--bg-0": "#e4e7ed", "--bg-1": "#f4f6f9", "--bg-2": "#d9dde4",
          "--surface": "#f7f8fb", "--surface-2": "#eef1f5", "--surface-solid": "#ffffff",

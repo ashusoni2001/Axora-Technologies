@@ -1,6 +1,5 @@
 import SectionHeading from "../components/ui/SectionHeading";
 import Reveal from "../components/ui/Reveal";
-import SpotCard from "../components/ui/SpotCard";
 import Icon from "../components/ui/Icon";
 import { clusters } from "../data/expertise";
 
@@ -21,16 +20,14 @@ export default function Expertise() {
               <h3>{cl.title}</h3>
               <div className="tagline">{cl.tagline}</div>
             </Reveal>
-            <div className={`xgrid ${cl.grid || ""}`}>
+            <div className="bento">
               {cl.items.map((it, i) => (
-                <Reveal delay={i * 80} key={it.title}>
-                  <SpotCard tilt className="xcard">
-                    <div className="ic">
-                      <Icon name={it.icon} size={24} />
-                    </div>
-                    <h4>{it.title}</h4>
-                    <p>{it.desc}</p>
-                  </SpotCard>
+                <Reveal delay={i * 70} key={it.title} className={`xtile sp-${it.span || 2}`}>
+                  <div className="ic">
+                    <Icon name={it.icon} size={22} />
+                  </div>
+                  <h4>{it.title}</h4>
+                  <p>{it.desc}</p>
                 </Reveal>
               ))}
             </div>

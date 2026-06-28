@@ -22,7 +22,14 @@
       "PowerShell($c = Get-NetTCPConnection -LocalPort 5173 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Select-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }; \"stopped\" } else { \"no listener\" })",
       "mcp__plugin_playwright_playwright__browser_hover",
       "mcp__plugin_playwright_playwright__browser_resize",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5176/)",
+      "Bash(git reset *)",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "Bash(rm -f phase5-*.jpeg)",
+      "Bash(rm -rf .playwright-mcp)",
+      "Bash(rm -f liquid-hero.jpeg liquid-modal.jpeg)",
+      "Bash(git rev-list *)"
     ]
   }
 }
