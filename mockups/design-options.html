@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Axora — Design Options (decision mockups)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400..600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ---- Frost · Aurora tokens (copied verbatim from src/index.css) ---- */
+    --bg-0:#edf3fb; --bg-1:#ffffff; --bg-2:#e2ebf7;
+    --surface:#ffffff; --surface-2:#f2f6fc;
+    --line:rgba(15,35,75,0.10); --line-strong:rgba(15,35,75,0.18); --grid-line:rgba(15,35,75,0.03);
+    --ink-0:#0c1626; --ink-1:#32445f; --ink-2:#61728c; --ink-3:#93a3bb;
+    --shadow:0 22px 48px -30px rgba(20,45,100,0.28);
+    --accent:#3f8cff; --accent-2:#9b5cf6; --accent-3:#28d6ec; --accent-ink:#06121f;
+    --accent-soft:color-mix(in srgb, var(--accent) 12%, transparent);
+    --accent-line:color-mix(in srgb, var(--accent) 34%, transparent);
+    --accent-glow:color-mix(in srgb, var(--accent) 45%, transparent);
+
+    /* ---- proposed tokenized glass ---- */
+    --glass-bg:color-mix(in srgb, var(--surface) 42%, transparent);
+    --glass-border:color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.6));
+    --glass-blur:14px;
+    --glass-shadow:0 24px 60px -28px rgba(20,45,100,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
+
+    --mono:"JetBrains Mono",monospace;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    font-family:"Hanken Grotesk",sans-serif;
+    background:var(--bg-0); color:var(--ink-1); line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* background stack mirroring the real app */
+  .app-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1100px 720px at 78% -8%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
+      radial-gradient(900px 640px at 12% 8%, color-mix(in srgb, var(--accent-2) 10%, transparent), transparent 58%),
+      radial-gradient(1000px 900px at 50% 118%, color-mix(in srgb, var(--accent-3) 9%, transparent), transparent 60%),
+      var(--bg-0);}
+  #dots{position:fixed;inset:0;z-index:0;pointer-events:none;}
+  .shell{position:relative;z-index:1;max-width:1180px;margin-inline:auto;padding:0 28px 120px;}
+
+  /* page chrome */
+  header.top{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:40px 28px 8px;}
+  .top .ey{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+  .top h1{font-family:"Bricolage Grotesque";font-weight:700;letter-spacing:-.02em;color:var(--ink-0);
+    font-size:34px;margin:10px 0 6px;}
+  .top p{max-width:640px;margin:0;color:var(--ink-2);font-size:15px;}
+
+  .block{position:relative;z-index:1;margin-top:64px;}
+  .block > h2{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);
+    display:flex;align-items:center;gap:12px;margin:0 0 6px;}
+  .block > h2::before{content:"";width:26px;height:1px;background:var(--accent-line);}
+  .block .ask{font-family:"Bricolage Grotesque";font-weight:600;color:var(--ink-0);font-size:22px;margin:0 0 22px;letter-spacing:-.01em;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+  @media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+  /* option card */
+  .opt{position:relative;border-radius:22px;border:1px solid var(--line);background:var(--surface);
+    box-shadow:var(--shadow);overflow:hidden;}
+  .opt .lab{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface-2);}
+  .opt .lab .nm{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-1);font-weight:600;}
+  .opt .lab .tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;border:1px solid var(--accent-line);color:var(--accent);background:var(--accent-soft);}
+  .opt .lab .tag.muted{color:var(--ink-3);border-color:var(--line);background:transparent;}
+  .opt .body{padding:30px 26px;}
+
+  /* ---------- TYPE specimens ---------- */
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);
+    display:inline-flex;align-items:center;gap:8px;}
+  .kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .spec-h{letter-spacing:-.03em;line-height:1.04;color:var(--ink-0);margin:14px 0 0;font-size:clamp(28px,3.4vw,40px);font-weight:700;}
+  .grad{background:linear-gradient(110deg,var(--accent-3) 2%,var(--accent) 48%,var(--accent-2) 98%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .spec-p{font-size:16px;color:var(--ink-1);line-height:1.65;margin:18px 0 0;max-width:42ch;}
+  .spec-meta{margin-top:22px;display:flex;gap:26px;}
+  .spec-meta .n{font-family:var(--mono);font-weight:700;font-size:24px;color:var(--ink-0);letter-spacing:-.02em;}
+  .spec-meta .l{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;}
+  /* pairing A */
+  .fA .spec-h{font-family:"Bricolage Grotesque";}
+  .fA .spec-p,.fA{font-family:"Hanken Grotesk";}
+  /* pairing B */
+  .fB .spec-h{font-family:"Fraunces";font-weight:600;letter-spacing:-.02em;}
+  .fB .spec-p,.fB{font-family:"Hanken Grotesk";}
+  /* pairing C (current) */
+  .fC .spec-h{font-family:"Space Grotesk";}
+  .fC .spec-p,.fC{font-family:"Space Grotesk";}
+  .glyphline{margin-top:24px;padding-top:16px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-2);}
+  .glyphline b{color:var(--ink-0);}
+
+  /* ---------- shared glass panel ---------- */
+  .glass{background:var(--glass-bg);-webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+    backdrop-filter:blur(var(--glass-blur)) saturate(150%);border:1px solid var(--glass-border);
+    box-shadow:var(--glass-shadow);border-radius:20px;}
+
+  /* ---------- HERO mockups ---------- */
+  .hero{position:relative;min-height:360px;display:flex;padding:40px;overflow:hidden;}
+  .hero.center{align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:24px;}
+  .hero.asym{align-items:center;gap:30px;}
+  .hero .copy{flex:1;}
+  .hero h3{font-family:"Bricolage Grotesque";font-weight:700;letter-spacing:-.03em;line-height:1.04;
+    color:var(--ink-0);font-size:clamp(26px,3vw,38px);margin:12px 0 0;}
+  .hero .sub{color:var(--ink-1);font-size:15px;margin:16px 0 0;max-width:44ch;}
+  .hero.center .sub{margin-inline:auto;}
+  .btnrow{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;}
+  .hero.center .btnrow{justify-content:center;}
+  .btn{font-family:"Hanken Grotesk";font-weight:600;font-size:14px;padding:12px 20px;border-radius:13px;border:1px solid transparent;}
+  .btn.p{color:var(--accent-ink);background:linear-gradient(100deg,var(--accent-3),var(--accent) 45%,var(--accent-2));
+    box-shadow:0 14px 30px -16px var(--accent-glow);}
+  .btn.g{color:var(--ink-0);background:var(--surface);border-color:var(--line-strong);}
+  /* readout panel */
+  .readout{width:300px;flex:none;padding:22px;}
+  .hero.center .readout{width:min(420px,100%);}
+  .readout .rh{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);
+    display:flex;align-items:center;justify-content:space-between;}
+  .readout .rh .live{display:inline-flex;align-items:center;gap:6px;color:var(--accent);}
+  .readout .rh .live .d{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow);}
+  .pipe{margin-top:16px;display:flex;align-items:center;gap:6px;}
+  .node{flex:1;text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-1);
+    padding:10px 6px;border-radius:10px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 60%,transparent);}
+  .node.on{border-color:transparent;box-shadow:0 0 0 1.5px var(--accent),0 8px 20px -12px var(--accent-glow);color:var(--ink-0);}
+  .arr{color:var(--ink-3);font-size:12px;}
+  .rstats{margin-top:18px;display:flex;gap:20px;}
+  .rstats .n{font-family:var(--mono);font-weight:700;font-size:20px;}
+  .rstats .l{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
+
+  /* ---------- MODAL mockups ---------- */
+  .modalstage{position:relative;min-height:420px;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:36px;}
+  .scrim{position:absolute;inset:0;}
+  .scrim.dim{background:color-mix(in srgb, var(--ink-0) 40%, transparent);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);}
+  .scrim.clear{background:color-mix(in srgb, var(--ink-0) 14%, transparent);}
+  .mpanel{position:relative;width:100%;max-width:460px;border-radius:22px;overflow:hidden;}
+  /* A frosted gray (opaque-ish surface, sits over dim scrim) */
+  .mpanel.frost{background:color-mix(in srgb, var(--surface) 88%, transparent);
+    -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+    border:1px solid var(--line-strong);box-shadow:var(--shadow);}
+  /* B live-dots glass (very transparent, dots show through) */
+  .mpanel.livedots{background:color-mix(in srgb, var(--surface) 34%, transparent);
+    -webkit-backdrop-filter:blur(13px) saturate(160%);backdrop-filter:blur(13px) saturate(160%);
+    border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);}
+  .mpanel .mhero{padding:26px 26px 20px;border-bottom:1px solid var(--line);}
+  .mpanel h4{font-family:"Bricolage Grotesque";font-weight:700;letter-spacing:-.02em;color:var(--ink-0);font-size:24px;margin:10px 0 0;}
+  .mpanel .mp{color:var(--ink-1);font-size:14px;margin:12px 0 0;}
+  .mpanel .mbody{padding:22px 26px 26px;display:flex;gap:24px;}
+  .mpanel .mbody .n{font-family:var(--mono);font-weight:700;font-size:22px;}
+  .mpanel .mbody .l{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;}
+
+  .note{margin-top:14px;font-size:13px;color:var(--ink-2);line-height:1.6;}
+  .note b{color:var(--ink-0);}
+  .foot{position:relative;z-index:1;max-width:1180px;margin:80px auto 0;padding:24px 28px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--ink-3);}
+</style>
+</head>
+<body>
+  <div class="app-bg"></div>
+  <canvas id="dots"></canvas>
+
+  <header class="top">
+    <div class="ey">Axora · design decisions</div>
+    <h1>Three choices, shown live</h1>
+    <p>Real fonts, the real Frost · Aurora palette, and a live reactive-dot field behind the glass — exactly like the site. Scroll through, then tell me your pick for each (1, 2, 3).</p>
+  </header>
+
+  <div class="shell">
+
+    <!-- ============ 1. TYPE ============ -->
+    <section class="block">
+      <h2>Decision 1 — Type personality</h2>
+      <div class="ask">Same headline, three typefaces. Which voice is Axora?</div>
+      <div class="grid3">
+        <div class="opt fA">
+          <div class="lab"><span class="nm">A · Bricolage + Hanken</span><span class="tag">recommended</span></div>
+          <div class="body">
+            <span class="kick"><span class="d"></span>What we do</span>
+            <div class="spec-h">We build <span class="grad">intelligent</span> systems for modern business.</div>
+            <p class="spec-p">Applied AI, data and software — delivered as one integrated engineering practice, built like real production systems.</p>
+            <div class="spec-meta"><div><div class="n">9</div><div class="l">Disciplines</div></div><div><div class="n">100%</div><div class="l">In-house</div></div></div>
+            <div class="glyphline"><b>Bricolage Grotesque</b> display · distinctive, editorial-technical · <b>Hanken Grotesk</b> body</div>
+          </div>
+        </div>
+        <div class="opt fB">
+          <div class="lab"><span class="nm">B · Fraunces + Hanken</span><span class="tag">editorial / bold</span></div>
+          <div class="body">
+            <span class="kick"><span class="d"></span>What we do</span>
+            <div class="spec-h">We build <span class="grad">intelligent</span> systems for modern business.</div>
+            <p class="spec-p">Applied AI, data and software — delivered as one integrated engineering practice, built like real production systems.</p>
+            <div class="spec-meta"><div><div class="n">9</div><div class="l">Disciplines</div></div><div><div class="n">100%</div><div class="l">In-house</div></div></div>
+            <div class="glyphline"><b>Fraunces</b> serif display · high-taste, magazine contrast · <b>Hanken Grotesk</b> body</div>
+          </div>
+        </div>
+        <div class="opt fC">
+          <div class="lab"><span class="nm">C · Space Grotesk</span><span class="tag muted">current</span></div>
+          <div class="body">
+            <span class="kick"><span class="d"></span>What we do</span>
+            <div class="spec-h">We build <span class="grad">intelligent</span> systems for modern business.</div>
+            <p class="spec-p">Applied AI, data and software — delivered as one integrated engineering practice, built like real production systems.</p>
+            <div class="spec-meta"><div><div class="n">9</div><div class="l">Disciplines</div></div><div><div class="n">100%</div><div class="l">In-house</div></div></div>
+            <div class="glyphline"><b>Space Grotesk</b> for everything · today's site · the baseline to beat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. HERO ============ -->
+    <section class="block">
+      <h2>Decision 2 — Hero layout</h2>
+      <div class="ask">Where does the glass readout panel sit? (watch the dots drift through it)</div>
+      <div class="grid2">
+        <div class="opt">
+          <div class="lab"><span class="nm">A · Asymmetric</span><span class="tag">most memorable</span></div>
+          <div class="hero asym">
+            <div class="copy">
+              <span class="kick"><span class="d"></span>AI · Data · Software</span>
+              <h3>We build intelligent systems for modern business.</h3>
+              <p class="sub">Production AI and data systems, engineered end to end.</p>
+              <div class="btnrow"><span class="btn p">Start a project</span><span class="btn g">Our expertise</span></div>
+            </div>
+            <div class="readout glass">
+              <div class="rh"><span>System · live</span><span class="live"><span class="d"></span>online</span></div>
+              <div class="pipe"><span class="node">Ingest</span><span class="arr">→</span><span class="node on">Model</span><span class="arr">→</span><span class="node">Serve</span></div>
+              <div class="rstats"><div><div class="n grad">12ms</div><div class="l">Latency</div></div><div><div class="n grad">99.9%</div><div class="l">Uptime</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="opt">
+          <div class="lab"><span class="nm">B · Centered + panel below</span><span class="tag muted">safer / faster</span></div>
+          <div class="hero center">
+            <div class="copy">
+              <span class="kick"><span class="d"></span>AI · Data · Software</span>
+              <h3>We build intelligent systems for modern business.</h3>
+              <p class="sub">Production AI and data systems, engineered end to end.</p>
+              <div class="btnrow"><span class="btn p">Start a project</span><span class="btn g">Our expertise</span></div>
+            </div>
+            <div class="readout glass">
+              <div class="rh"><span>System · live</span><span class="live"><span class="d"></span>online</span></div>
+              <div class="pipe"><span class="node">Ingest</span><span class="arr">→</span><span class="node on">Model</span><span class="arr">→</span><span class="node">Serve</span></div>
+              <div class="rstats"><div><div class="n grad">12ms</div><div class="l">Latency</div></div><div><div class="n grad">99.9%</div><div class="l">Uptime</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="note"><b>Note:</b> font here is Bricolage for both — type (decision 1) is independent of layout. Asymmetric keeps the existing centered hero off the table and is a real rewrite; centered-with-panel reuses today's structure.</p>
+    </section>
+
+    <!-- ============ 3. MODAL ============ -->
+    <section class="block">
+      <h2>Decision 3 — Project modal glass</h2>
+      <div class="ask">Does the modal frost to gray, or show the live dots through it?</div>
+      <div class="grid2">
+        <div class="opt">
+          <div class="lab"><span class="nm">A · Frosted (dim screen)</span><span class="tag">safe / standard</span></div>
+          <div class="modalstage">
+            <div class="scrim dim"></div>
+            <div class="mpanel frost">
+              <div class="mhero"><span class="kick"><span class="d"></span>Case study</span><h4>JAAGI — real-time safety AI</h4><p class="mp">A production vision system catching events the moment they happen.</p></div>
+              <div class="mbody"><div><div class="n grad">40ms</div><div class="l">Inference</div></div><div><div class="n grad">6</div><div class="l">Cameras</div></div><div><div class="n grad">24/7</div><div class="l">Uptime</div></div></div>
+            </div>
+          </div>
+          <p class="note">Screen dims behind, panel frosts to clean gray. Dots <b>not</b> visible through it. Lowest risk; the classic focused-modal feel.</p>
+        </div>
+        <div class="opt">
+          <div class="lab"><span class="nm">B · Live-dots glass</span><span class="tag muted">cooler / riskier</span></div>
+          <div class="modalstage">
+            <div class="scrim clear"></div>
+            <div class="mpanel livedots">
+              <div class="mhero"><span class="kick"><span class="d"></span>Case study</span><h4>JAAGI — real-time safety AI</h4><p class="mp">A production vision system catching events the moment they happen.</p></div>
+              <div class="mbody"><div><div class="n grad">40ms</div><div class="l">Inference</div></div><div><div class="n grad">6</div><div class="l">Cameras</div></div><div><div class="n grad">24/7</div><div class="l">Uptime</div></div></div>
+            </div>
+          </div>
+          <p class="note">Barely-there scrim, panel is true glass — dots drift <b>through</b> it. Striking, on-concept, but the page-dim that focuses attention is weaker and text contrast needs care.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="foot">Open in a browser · resize to test responsiveness · mockup only — not wired into the app · src palette + tokens are real</div>
+
+<script>
+// Lightweight reactive-dot field (same spirit as NeuralCanvas) so glass has something live to refract.
+const c = document.getElementById('dots'), x = c.getContext('2d');
+let W,H,nodes,DPR=Math.min(window.devicePixelRatio||1,2);
+const ACC = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#3f8cff';
+function hex(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+const A = hex(ACC);
+function resize(){
+  W=c.width=innerWidth*DPR; H=c.height=innerHeight*DPR; c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px';
+  const n=Math.round((innerWidth*innerHeight)/14000);
+  nodes=Array.from({length:Math.min(n,130)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18*DPR,vy:(Math.random()-.5)*.18*DPR}));
+}
+function tick(){
+  x.clearRect(0,0,W,H);
+  const R=130*DPR;
+  for(const p of nodes){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i],b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<R){x.strokeStyle=`rgba(${A[0]},${A[1]},${A[2]},${(1-d/R)*0.22})`;x.lineWidth=DPR;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}
+    }
+  }
+  for(const p of nodes){x.fillStyle=`rgba(${A[0]},${A[1]},${A[2]},0.55)`;x.beginPath();x.arc(p.x,p.y,1.6*DPR,0,7);x.fill();}
+  requestAnimationFrame(tick);
+}
+addEventListener('resize',resize);resize();tick();
+</script>
+</body>
+</html>

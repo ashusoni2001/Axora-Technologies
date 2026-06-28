@@ -65,7 +65,7 @@ export default function Hero() {
             <Fragment key={m.label}>
               {i > 0 && <span className="m-div" />}
               <div>
-                <div className="m-num grad">{m.num}</div>
+                <div className="m-num">{m.num}</div>
                 <div className="m-lab">{m.label}</div>
               </div>
             </Fragment>
