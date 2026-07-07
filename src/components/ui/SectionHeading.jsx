@@ -1,36 +1,35 @@
-import { motion } from "framer-motion";
-import { fadeUp, viewportConfig } from "../../lib/animations";
+import Reveal from "./Reveal";
 
-export default function SectionHeading({
-  title,
-  accentWord,
-  subtitle,
-  centered = true,
-}) {
-  const parts = accentWord ? title.split(accentWord) : [title];
-
+/**
+ * Centered section header: mono kicker, gradient-accented title, optional lead.
+ * `accent` must be a substring of `title` — it's the gradient-highlighted part.
+ */
+export default function SectionHeading({ kicker, title, accent, sub }) {
+  const parts = accent ? title.split(accent) : [title];
   return (
-    <motion.div
-      initial={fadeUp.initial}
-      whileInView={fadeUp.animate}
-      viewport={viewportConfig}
-      transition={fadeUp.transition}
-      className={`mb-16 ${centered ? "text-center" : ""}`}
-    >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 mb-4">
-        {accentWord ? (
+    <div className="sec-head">
+      <Reveal>
+        <span className="kicker">
+          <span className="bar" />
+          {kicker}
+        </span>
+      </Reveal>
+      <Reveal delay={80} as="h2" className="h-section">
+        {accent ? (
           <>
             {parts[0]}
-            <span className="gradient-text">{accentWord}</span>
+            <span className="grad">{accent}</span>
             {parts[1]}
           </>
         ) : (
           title
         )}
-      </h2>
-      {subtitle && (
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto">{subtitle}</p>
+      </Reveal>
+      {sub && (
+        <Reveal delay={150} as="p" className="lead">
+          {sub}
+        </Reveal>
       )}
-    </motion.div>
+    </div>
   );
 }

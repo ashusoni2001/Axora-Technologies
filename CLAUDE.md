@@ -5,29 +5,52 @@
 - **Package:** `axora-portfolio@1.0.0`
 - **Dev:** `npm run dev` | **Build:** `npm run build` | **Lint:** `npm run lint`
 - **Deploy target:** Vercel (auto-detects Vite)
+- **Design:** Light, token-driven with a runtime theme switcher. Rebuilt on the
+  `dev` branch from the `A:\ML_WORK\ML_WORK\Axora-Technologies` reference prototype.
 
 ## Project Structure
 ```
 src/
-├── components/{background,layout,ui}/   — Reusable components
-├── sections/                            — Page sections (Hero → Contact)
-├── data/                                — Static data (projects, services, tech, nav)
-├── hooks/                               — useActiveSection, useScrollDirection
-├── lib/animations.js                    — Framer Motion presets
-├── index.css                            — Tailwind theme (Navy + Gold palette)
-└── App.jsx                              — Root layout (single-page, anchor nav)
+├── components/
+│   ├── background/NeuralCanvas.jsx      — full-page accent-reactive dot network
+│   ├── layout/{Navbar, Footer, ThemeSwitcher}.jsx
+│   └── ui/{Icon, Logo, Button, Reveal, SpotCard, SectionHeading}.jsx
+├── sections/                           — Hero, Marquee, Expertise, About, Work, Contact
+├── data/                               — navigation, hero, expertise, about, projects, contact
+├── hooks/                              — useScrollSpy, useNavChrome, useAccents
+├── lib/theme.js                        — runtime theme engine (bases × accents)
+├── lib/animations.js                   — Framer Motion reveal presets
+├── index.css                           — design tokens + bespoke component classes
+└── App.jsx                             — bg layers + shell + sections + ThemeSwitcher
 ```
 
 ## Conventions
 - JSX (not TypeScript) — @types packages installed but unused
 - All section data lives in `src/data/` — edit there, not in components
-- Colors via CSS variables in index.css @theme block — components use Tailwind classes
-- Hardcoded colors exist in: GlowOrbs.jsx (rgba), NeuralNetwork.jsx (#hex)
-- ESLint: `motion` is whitelisted in varsIgnorePattern
-- Button `icon` prop is lowercase (destructured as `Icon` internally)
+- **Theming is runtime CSS variables** (`src/lib/theme.js`): 12 surface bases ×
+  14 accents, 14 curated presets, persisted to `localStorage`, applied to `<html>`.
+  Default = **Frost · Aurora** (light).
+- **Theme palette is a developer build flag, OFF by default** (`src/config.js` reads
+  `VITE_THEME_PALETTE`): the site ships locked on Frost · Aurora. Set `VITE_THEME_PALETTE=on`
+  in `.env` (local) or the Vercel env vars and redeploy to expose the floating picker
+  (`<ThemeSwitcher/>`, gated in `App.jsx`). `main.jsx` restores the saved theme only when the
+  flag is on; otherwise it applies Frost · Aurora pre-paint. **Not a user-facing toggle.**
+- Style via the semantic classes in `index.css` using the tokens
+  (`--ink-*`, `--surface*`, `--line*`, `--accent*`, `--bg-*`) — **never hardcode colors**.
+  Tailwind utilities are available for layout but the visual language lives in classes.
+- Canvas backgrounds read live accent colors via `useAccents()` and re-tint on the
+  `axora-theme-change` window event the theme engine dispatches.
+- Icons: custom SVG set in `components/ui/Icon.jsx`, used by name string
+  (`<Icon name="systemDesign" />`) — not lucide.
+- Scroll reveals: `components/ui/Reveal.jsx` (Framer Motion, `variant` + `delay` ms);
+  honours `prefers-reduced-motion`.
+- `Button` renders `<a>` when given `href`, else `<button>`; `icon` is an Icon name string.
+- ESLint: `motion` is whitelisted in varsIgnorePattern.
 
 ## Brand
 - **Company:** Axora Technologies
 - **Email:** support@axoratechnologies.in
 - **Phone:** +91 9654252335
+- **LinkedIn:** https://www.linkedin.com/company/axora-technologies-exports/ (live in footer)
+- **GitHub:** intentionally disabled ("coming soon")
 - **Tone:** Professional consultancy (not freelancer) — no fabricated stats

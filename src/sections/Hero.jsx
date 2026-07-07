@@ -1,108 +1,86 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { useState, useEffect, Fragment } from "react";
+import { useReducedMotion } from "framer-motion";
 import Button from "../components/ui/Button";
-import NeuralNetwork from "../components/background/NeuralNetwork";
-import GlowOrbs from "../components/background/GlowOrbs";
-
-const rotatingWords = ["Intelligent", "Scalable", "AI-Driven", "Powerful"];
-
-const ease = [0.22, 1, 0.36, 1];
+import { rotatingWords, heroSubtitle, heroMeta } from "../data/hero";
 
 export default function Hero() {
-  const [wordIndex, setWordIndex] = useState(0);
+  const [wi, setWi] = useState(0);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+    // Respect prefers-reduced-motion: freeze on the first word, no cycling.
+    if (reduce) return;
+    const t = setInterval(
+      () => setWi((p) => (p + 1) % rotatingWords.length),
+      2600
+    );
+    return () => clearInterval(t);
+  }, [reduce]);
+
+  // Longest word acts as an invisible spacer so the line never reflows.
+  const spacer = rotatingWords.reduce((a, b) => (b.length > a.length ? b : a), "");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <NeuralNetwork />
-      <GlowOrbs />
+    <header className="hero" id="top">
+      <div className="hero-orb a" />
+      <div className="hero-orb b" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6, ease }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-slate-300 mb-8"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-500" />
-          </span>
-          AI Engineering & Software Consultancy
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.6, ease }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-100 leading-tight mb-6"
-        >
-          We Build{" "}
-          <span className="inline-block relative">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={rotatingWords[wordIndex]}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease }}
-                className="gradient-text inline-block"
+      <div className="hero-inner">
+        <h1 className="h-display hero-h1">
+          <span className="hl-1">We build</span>
+          <br />
+          <span className="rot">
+            {rotatingWords.map((w, i) => (
+              <span
+                key={w}
+                className="grad rot-word"
+                style={{
+                  opacity: i === wi ? 1 : 0,
+                  transform: reduce
+                    ? "none"
+                    : i === wi
+                    ? "translateY(0)"
+                    : "translateY(16px)",
+                  filter: reduce ? "none" : i === wi ? "blur(0)" : "blur(6px)",
+                  transition: reduce
+                    ? "none"
+                    : "opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease)",
+                }}
               >
-                {rotatingWords[wordIndex]}
-              </motion.span>
-            </AnimatePresence>
+                {w}
+              </span>
+            ))}
+            <span className="rot-word" style={{ visibility: "hidden" }}>
+              {spacer}
+            </span>
           </span>
           <br />
-          Solutions for Modern Businesses
-        </motion.h1>
+          <span className="hl-2">systems for modern business.</span>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.6, ease }}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
-        >
-          We help businesses harness the power of artificial intelligence and
-          cutting-edge technology. From intelligent automation to
-          production-grade AI systems, we deliver solutions that transform
-          operations and drive measurable outcomes.
-        </motion.p>
+        <p className="lead hero-sub">{heroSubtitle}</p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6, ease }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Button href="#services" size="lg">
-            Explore Our Services
+        <div className="hero-cta">
+          <Button href="#contact" icon="arrowRight">
+            Start a project
           </Button>
-          <Button href="#contact" variant="outline" size="lg">
-            Get in Touch
+          <Button href="#expertise" variant="ghost">
+            Explore our expertise
           </Button>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown size={20} className="text-slate-500" />
-          </motion.div>
-        </motion.div>
+        <div className="hero-meta">
+          {heroMeta.map((m, i) => (
+            <Fragment key={m.label}>
+              {i > 0 && <span className="m-div" />}
+              <div>
+                <div className="m-num">{m.num}</div>
+                <div className="m-lab">{m.label}</div>
+              </div>
+            </Fragment>
+          ))}
+        </div>
       </div>
-    </section>
+    </header>
   );
 }
