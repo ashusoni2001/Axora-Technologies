@@ -18,7 +18,7 @@
   --bg-0: #edf3fb; --bg-1: #ffffff; --bg-2: #e2ebf7;
   --surface: #ffffff; --surface-2: #f2f6fc; --surface-solid: #ffffff;
   --line: rgba(15,35,75,0.10); --line-strong: rgba(15,35,75,0.18); --grid-line: rgba(15,35,75,0.03);
-  --ink-0: #0c1626; --ink-1: #32445f; --ink-2: #61728c; --ink-3: #93a3bb;
+  --ink-0: #0c1626; --ink-1: #32445f; --ink-2: #61728c; --ink-3: #66768e;
   --shadow: 0 22px 48px -30px rgba(20,45,100,0.28);
   --noise-op: 0;
 
@@ -85,6 +85,14 @@ body {
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 img { display: block; max-width: 100%; }
+
+/* Keyboard focus ring — stays visible over glass surfaces and the live dot
+   field. :focus-visible keeps it off mouse/touch interactions. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent);
+}
 
 /* ============================================================
    APP BACKGROUND
@@ -353,26 +361,8 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
 /* ============================================================
-   EXPERTISE (centered clusters)
+   EXPERTISE (five domain cards: 2×2 grid + full-width anchor)
    ============================================================ */
-.cluster { margin-bottom: clamp(44px, 5vw, 60px); }
-.cluster:last-child { margin-bottom: 0; }
-.cluster-head { text-align: center; margin-bottom: 26px; }
-.cluster-head h3 { font-family: var(--display); font-size: clamp(19px, 2.3vw, 24px); font-weight: 600; color: var(--ink-0); margin: 0; letter-spacing: -0.02em; }
-.cluster-head .tagline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
-
-/* --- Neumorphic bento (six-column; collapses to 2 / 1 cols) --- */
-.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; max-width: 1040px; margin-inline: auto; }
-.sp-2 { grid-column: span 2; }
-.sp-3 { grid-column: span 3; }
-.sp-4 { grid-column: span 4; }
-.sp-6 { grid-column: span 6; }
-@media (max-width: 900px) {
-  .bento { grid-template-columns: repeat(2, 1fr); }
-  .bento > * { grid-column: auto !important; }
-}
-@media (max-width: 560px) { .bento { grid-template-columns: 1fr; } }
-
 .xtile {
   display: flex; flex-direction: column; gap: 11px;
   padding: 24px 24px 26px; border-radius: 18px; min-width: 0;
@@ -389,6 +379,26 @@ img { display: block; max-width: 100%; }
 .xtile svg { width: 22px; height: 22px; }
 .xtile h4 { font-size: 17px; font-weight: 600; color: var(--ink-0); margin: 3px 0 0; letter-spacing: -0.01em; }
 .xtile p { font-size: 13.5px; color: var(--ink-2); line-height: 1.6; margin: 0; max-width: 52ch; }
+
+/* Domain-card variant of .xtile — must stay AFTER the .xtile base rules:
+   the overrides below win on source order at equal specificity. */
+.dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; margin-inline: auto; }
+.dcard { border-radius: 20px; padding: 28px; gap: 14px; }
+.dcard-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.dcard-head { display: flex; align-items: center; gap: 14px; }
+.dcard-head h4 { font-size: 19px; margin: 0; }
+.dcard p { font-size: 14px; max-width: none; }
+.dcard-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+/* Anchor card: horizontal — fixed left block (icon + title + line), chip cloud right */
+.dcard.anchor { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 28px; }
+.dcard.anchor .dcard-main { flex: none; width: 320px; }
+.dcard.anchor .dcard-chips { margin-top: 0; }
+@media (max-width: 700px) {
+  .dgrid { grid-template-columns: 1fr; }
+  .dcard.anchor { flex-direction: column; align-items: stretch; gap: 14px; }
+  .dcard.anchor .dcard-main { width: auto; }
+  .dcard.anchor .dcard-chips { margin-top: 4px; }
+}
 
 /* ============================================================
    ABOUT (centered)
@@ -409,7 +419,12 @@ img { display: block; max-width: 100%; }
    WORK / PROJECTS (equal height)
    ============================================================ */
 .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
-@media (max-width: 980px) { .pgrid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } }
+/* Adaptive columns when a sector filter leaves fewer than 3 cards (CHANGE-03).
+   Classes, not inline styles, so the ≤980px auto-fit collapse still wins.
+   .n1 skips the auto-fit override — its single 720px track shrinks naturally. */
+.pgrid.n2 { grid-template-columns: repeat(2, 1fr); max-width: 920px; margin-inline: auto; }
+.pgrid.n1 { grid-template-columns: minmax(0, 720px); justify-content: center; }
+@media (max-width: 980px) { .pgrid, .pgrid.n2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } }
 .pgrid > * { height: 100%; }
 .pcard { height: 100%; padding: 30px; display: flex; flex-direction: column; text-align: left; }
 .pcard .topline { height: 2px; width: 56px; border-radius: 2px; background: linear-gradient(90deg, var(--accent-3), var(--accent-2)); transition: width .5s var(--ease); }
@@ -428,6 +443,59 @@ img { display: block; max-width: 100%; }
 }
 .plink:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); transform: translateY(-1px); }
 .plink svg { width: 15px; height: 15px; }
+
+/* --- Sector chips (CHANGE-03) --- */
+.schips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 30px; }
+.schip {
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink-1);
+  padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2);
+  transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+}
+.schip:hover { border-color: var(--accent-line); color: var(--ink-0); }
+.schip.on {
+  background: linear-gradient(100deg, var(--accent-3), var(--accent), var(--accent-2));
+  color: var(--accent-ink); font-weight: 700; border-color: transparent;
+}
+
+/* --- "Why it matters here" angle strip (between .tags and .foot) --- */
+.angle {
+  display: flex; flex-direction: column; gap: 6px;
+  background: var(--accent-soft); border: 1px solid var(--accent-line);
+  border-radius: 12px; padding: 12px 14px; margin: -4px 0 20px;
+}
+.angle .lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+.angle p { font-size: 13px; line-height: 1.55; color: var(--ink-0); margin: 0; }
+
+/* --- Sector playbook panel (CHANGE-03) --- */
+.pbk { padding: 36px 38px 32px; margin-top: 22px; }
+.pbk:hover { transform: none; }
+.pbk-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+.pbk-hl { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink-0); margin: 12px 0 0; }
+.pbk-block { margin-bottom: 26px; }
+.pbk-pains { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+.pbk-pains li { display: flex; gap: 10px; font-size: 14px; line-height: 1.6; color: var(--ink-1); }
+.pbk-pains li .d { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 8px; }
+.pbk-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pbk-case {
+  display: flex; align-items: flex-start; gap: 14px;
+  border: 1px solid var(--line); background: var(--surface-2); border-radius: 16px; padding: 20px 22px;
+}
+.pbk-num {
+  flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent);
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+}
+.pbk-case h5 { font-size: 15.5px; font-weight: 600; color: var(--ink-0); margin: 0 0 6px; }
+.pbk-case p { font-size: 13.5px; line-height: 1.58; color: var(--ink-2); margin: 0; }
+.pbk-foot { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 20px; }
+.pbk-out { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.pbk-out-lbl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); margin-right: 6px; }
+.pbk-note { font-size: 12.5px; font-style: italic; color: var(--ink-3); margin: 0; max-width: 400px; }
+@media (max-width: 700px) {
+  .pbk { padding: 28px 22px 26px; }
+  .pbk-pains, .pbk-cases { grid-template-columns: 1fr; }
+  .pbk-foot { align-items: flex-start; }
+}
 
 /* ============================================================
    CONTACT

@@ -1,32 +1,87 @@
-/* Three clusters (nine disciplines) rendered as a neumorphic bento grid.
-   `span` sets each tile's width in a 6-column bento (collapses to 2 / 1 cols on
-   smaller screens). `icon` keys map to the custom SVG set in components/ui/Icon.jsx. */
-export const clusters = [
+/* Five expertise domains (CHANGE-01): four cards in a 2×2 grid plus one
+   full-width horizontal "anchor" card (`anchor: true`). `chips` are the
+   scannable capabilities; `icon` keys map to components/ui/Icon.jsx. */
+export const domains = [
   {
-    title: "Artificial Intelligence & ML",
-    tagline: "Models that reason, predict and adapt",
-    items: [
-      { icon: "systemDesign", span: 4, title: "AI System Design", desc: "Architecting end-to-end intelligent systems — data pipelines, model orchestration, inference, evaluation and monitoring." },
-      { icon: "aiEngineering", span: 2, title: "AI Engineering", desc: "Productionising AI — RAG, autonomous agents, LLM pipelines and GenAI workflows engineered for reliability at scale." },
-      { icon: "machineLearning", span: 2, title: "Machine Learning", desc: "Predictive, recommendation, classification and forecasting models — trained, tuned and shipped to production." },
-      { icon: "deepLearning", span: 4, title: "Deep Learning", desc: "Neural networks for vision, speech and language — custom architectures built with PyTorch and TensorFlow." },
+    icon: "aiEngineering",
+    title: "Generative AI & Agents",
+    desc: "Systems that reason, plan and act — from RAG to autonomous multi-agent products, shipped at scale.",
+    chips: [
+      "AI system design",
+      "RAG pipelines",
+      "Multi-agent architectures",
+      "Orchestration engines",
+      "LLM evaluation",
+      "Scalable AI applications",
     ],
   },
   {
-    title: "Data & Insight",
-    tagline: "Turning raw data into decisions",
-    items: [
-      { icon: "dataScience", span: 4, title: "Data Science", desc: "Turning raw data into decisions through statistical modelling, experimentation and rigorous analysis." },
-      { icon: "dataAnalytics", span: 2, title: "Data Analytics", desc: "ETL pipelines, metrics and exploratory analysis that surface the signal hiding in your operational data." },
-      { icon: "powerbi", span: 6, title: "Power BI", desc: "Interactive dashboards and executive reporting that make complex data instantly understandable." },
+    icon: "deepLearning",
+    title: "Core ML & Deep Learning",
+    desc: "From training deep neural networks to deploying models behind production-grade applications.",
+    chips: [
+      "Predictive modelling",
+      "Computer vision",
+      "Speech & language",
+      "Forecasting",
+      "PyTorch",
+      "TensorFlow",
+      "Model deployment",
     ],
   },
   {
-    title: "Software & Product",
-    tagline: "Built like real software — tested and shipped",
-    items: [
-      { icon: "softwareEngineering", span: 4, title: "Software Engineering", desc: "Robust, maintainable backends and APIs — clean architecture, fully tested and built to last." },
-      { icon: "appDevelopment", span: 2, title: "App Development", desc: "Native and cross-platform mobile and web apps engineered for performance and an exceptional UX." },
+    icon: "dataScience",
+    title: "Data Science & Engineering",
+    desc: "Large, messy datasets turned into decisions — rigorous modelling on pipelines built to last.",
+    chips: [
+      "Statistical modelling",
+      "Predictive analysis",
+      "ETL pipelines",
+      "Big Data analytics",
+      "Cleaning & transformation",
+      "Experimentation",
     ],
   },
+  {
+    icon: "powerbi",
+    title: "Analytics & BI",
+    desc: "Dashboards and reporting that make complex operational data instantly understandable.",
+    chips: [
+      "Power BI dashboards",
+      "Business intelligence",
+      "Executive reporting",
+      "Interactive data apps",
+      "KPI design",
+    ],
+  },
+  {
+    icon: "softwareEngineering",
+    title: "Software Engineering",
+    desc: "The discipline underneath everything we ship.",
+    chips: [
+      "Backend & APIs",
+      "Clean architecture",
+      "Full-stack web apps",
+      "Cross-platform mobile",
+      "Testing & CI/CD",
+    ],
+    anchor: true,
+  },
+];
+
+/* Curated capability ribbon for the Marquee — a dozen picks spanning all five
+   domains, sized so the loop pace matches the old nine-discipline track. */
+export const marqueeItems = [
+  "RAG pipelines",
+  "Multi-agent architectures",
+  "LLM evaluation",
+  "Computer vision",
+  "Speech & language",
+  "Forecasting",
+  "Statistical modelling",
+  "ETL pipelines",
+  "Big Data analytics",
+  "Power BI dashboards",
+  "Backend & APIs",
+  "Full-stack web apps",
 ];

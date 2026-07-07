@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
  * the middle of the screen.
  */
 export function useScrollSpy(ids) {
-  const [active, setActive] = useState(ids[0]);
+  // Start with nothing active so the nav isn't lit at the top of the page
+  // (the hero is above the first observed section).
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     const io = new IntersectionObserver(

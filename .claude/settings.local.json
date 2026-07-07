@@ -29,7 +29,10 @@
       "Bash(rm -f phase5-*.jpeg)",
       "Bash(rm -rf .playwright-mcp)",
       "Bash(rm -f liquid-hero.jpeg liquid-modal.jpeg)",
-      "Bash(git rev-list *)"
+      "Bash(git rev-list *)",
+      "Bash(ls -la *.json *.js *.mjs *.cjs .env* vercel.json)",
+      "Bash(ls -la package-lock.json yarn.lock pnpm-lock.yaml)",
+      "Bash(file public/*.png)"
     ]
   }
 }

@@ -1,9 +1,8 @@
-import { clusters } from "../data/expertise";
+import { marqueeItems } from "../data/expertise";
 
-/** Infinite scrolling ribbon of every discipline (doubled for a seamless loop). */
+/** Infinite scrolling ribbon of curated capabilities (doubled for a seamless loop). */
 export default function Marquee() {
-  const all = clusters.flatMap((c) => c.items.map((i) => i.title));
-  const loop = [...all, ...all];
+  const loop = [...marqueeItems, ...marqueeItems];
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-track">
