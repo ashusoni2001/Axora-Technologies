@@ -1,6 +1,7 @@
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ThemeSwitcher from "./components/layout/ThemeSwitcher";
+import ErrorBoundary from "./components/ui/ErrorBoundary";
 import NeuralCanvas from "./components/background/NeuralCanvas";
 import Hero from "./sections/Hero";
 import Marquee from "./sections/Marquee";
@@ -12,7 +13,7 @@ import { THEME_PALETTE_ENABLED } from "./config";
 
 function App() {
   return (
-    <>
+    <ErrorBoundary>
       <div className="app-bg" />
       <div className="app-grid" />
       <NeuralCanvas />
@@ -32,7 +33,7 @@ function App() {
       </div>
 
       {THEME_PALETTE_ENABLED && <ThemeSwitcher />}
-    </>
+    </ErrorBoundary>
   );
 }
 

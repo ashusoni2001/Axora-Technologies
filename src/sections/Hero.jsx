@@ -1,17 +1,21 @@
 import { useState, useEffect, Fragment } from "react";
+import { useReducedMotion } from "framer-motion";
 import Button from "../components/ui/Button";
 import { rotatingWords, heroSubtitle, heroMeta } from "../data/hero";
 
 export default function Hero() {
   const [wi, setWi] = useState(0);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    // Respect prefers-reduced-motion: freeze on the first word, no cycling.
+    if (reduce) return;
     const t = setInterval(
       () => setWi((p) => (p + 1) % rotatingWords.length),
       2600
     );
     return () => clearInterval(t);
-  }, []);
+  }, [reduce]);
 
   // Longest word acts as an invisible spacer so the line never reflows.
   const spacer = rotatingWords.reduce((a, b) => (b.length > a.length ? b : a), "");
@@ -32,10 +36,15 @@ export default function Hero() {
                 className="grad rot-word"
                 style={{
                   opacity: i === wi ? 1 : 0,
-                  transform: i === wi ? "translateY(0)" : "translateY(16px)",
-                  filter: i === wi ? "blur(0)" : "blur(6px)",
-                  transition:
-                    "opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease)",
+                  transform: reduce
+                    ? "none"
+                    : i === wi
+                    ? "translateY(0)"
+                    : "translateY(16px)",
+                  filter: reduce ? "none" : i === wi ? "blur(0)" : "blur(6px)",
+                  transition: reduce
+                    ? "none"
+                    : "opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease)",
                 }}
               >
                 {w}

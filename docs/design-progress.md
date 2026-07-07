@@ -1,7 +1,8 @@
 # Design Overhaul — Progress Log & Resume Handoff
 
-> Last worked: **2026-06-14** · Resuming: **2026-06-15** · Branch: **`dev-exp`**
-> Companion to [`design-audit.md`](./design-audit.md) (the analysis that drove this).
+> Last worked: **2026-06-28** (polish phase) · Branch: **`dev-exp`**
+> Companions: [`design-audit.md`](./design-audit.md) (overhaul analysis) ·
+> [`polish-audit.md`](./polish-audit.md) (multi-agent polish audit + prioritized backlog).
 > This file is the living build log — read it first when resuming.
 
 ---
@@ -16,10 +17,50 @@
   (glass refracts them).
 - **Brand tone:** professional consultancy — **no fabricated stats**.
 
-## How to resume tomorrow
-1. `npm run dev` (server was on **port 5176**; it won't survive overnight — restart it).
-2. You're on `dev-exp`. All Phase 1–5 + liquid-glass work is **uncommitted** in the working tree.
-3. Verify in a real browser (Chrome) — the user works this way.
+## How to resume
+1. `npm run dev` (server runs on **port 5176**; restart it if not running).
+2. You're on `dev-exp`. The Phase 1–5 + liquid-glass overhaul is now **committed** at
+   `2cc02f3 "re-design"`. The polish-phase **quick-wins** batch is **uncommitted** on top.
+3. Polish backlog + priorities live in [`polish-audit.md`](./polish-audit.md). Next recommended
+   step: the **shareability / OG package** (the one HIGH item).
+4. Verify in a real browser (Chrome) — the user works this way.
+
+---
+
+## Polish phase (2026-06-28)
+
+The overhaul is committed (`2cc02f3`). This phase = **audit → fix → polish**, design moves
+prototyped as mockups first. Full findings + prioritized backlog: [`polish-audit.md`](./polish-audit.md).
+
+**Audit:** multi-agent (principal-architect + senior-fullstack + security + frontend-design lenses,
+judge-verified). Verdict — genuinely senior-grade, **no critical / no security issues** (static SPA,
+no backend/forms/data). Judge downgraded inflated finds (e.g. security headers high→low); the one
+real **HIGH** is shareability (blank LinkedIn/Slack unfurls).
+
+**Quick-wins batch — DONE (uncommitted; lint + build clean; browser-verified on :5176):**
+- `NeuralCanvas.jsx` — `prefers-reduced-motion` (paints one static frame), `getContext` null-guard,
+  hidden-tab pause, live preference listener. Closes the only real crash vector + the biggest a11y gap.
+- `Hero.jsx` — rotating-word `useReducedMotion` guard (freezes on the first word).
+- `index.css` — global `:focus-visible` ring (accent outline + offset + halo, visible over glass).
+- `--ink-3` contrast `#93a3bb` → `#66768e` (2.56:1 → **4.62:1** on white) in `index.css :root` **and**
+  `theme.js` frost (the applied value). Caveat: 4.14:1 on the tinted footer bg — nudge darker if AA-everywhere is required.
+- `useScrollSpy.js` — seed `null` (nav no longer lit at page top).
+- `ErrorBoundary.jsx` (new) wrapping the whole app in `App.jsx` — branded fallback, no white screen.
+- Removed dead `lucide-react`; rewrote the stale `README.md`.
+
+**Deferred (user reassessing — priority order):**
+1. **Shareability (HIGH):** OG/Twitter/canonical/JSON-LD + 1200×630 share image + favicon set /
+   manifest / theme-color / robots / sitemap. (One `index.html` + `public/` pass.)
+2. `vercel.json` security headers + immutable caching; `npm audit fix` (3 high *build-dep* advisories).
+3. Self-host fonts (woff2) — kills hero-swap CLS + Google IP egress.
+4. Oversized `axora-mark.png` (~320 KB); purge dead `src/assets/` media (mp4 + ~197 frames + AI-named PNGs).
+5. Minor React/a11y nits: modal focus-trap + `aria-labelledby`, mobile-menu dialog semantics +
+   desktop-resize close, scroll-lock-on-exit, Marquee keys, `SectionHeading` split, `SpotCard` tilt, Drive demo.
+
+**Design = MOCK-UP-FIRST (user's call):** bold standout moves — hero self-demonstrating entrance
+(headline drives the dot field), one material/gradient hierarchy, asymmetric editorial About,
+dots-causal-to-UI, card→modal architecture thread — prototype in `mockups/` for browser review
+BEFORE touching live components. Not started. (See `polish-audit.md` for all 10.)
 
 ---
 

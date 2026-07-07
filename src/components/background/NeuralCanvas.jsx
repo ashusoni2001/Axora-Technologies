@@ -5,6 +5,10 @@ import { useAccents, rgba } from "../../hooks/useAccents";
  * Full-page connected-dot network. Nodes drift, link when close, and pull
  * gently toward the cursor. Colours are read live from the active theme,
  * so the field retints when the palette changes.
+ *
+ * Accessibility / perf: honours prefers-reduced-motion (paints one static
+ * frame instead of animating), guards a null 2D context so it can never throw,
+ * and pauses while the tab is hidden so it never burns CPU in the background.
  */
 export default function NeuralCanvas() {
   const acc = useAccents();
@@ -13,7 +17,10 @@ export default function NeuralCanvas() {
   useEffect(() => {
     const canvas = ref.current;
     const ctx = canvas.getContext("2d");
-    let w, h, dpr, raf;
+    if (!ctx) return; // no 2D context (ancient/headless) — render nothing, never throw
+
+    const reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let w, h, dpr, raf = null;
     const mouse = { x: -9999, y: -9999 };
     let nodes = [];
 
@@ -36,7 +43,8 @@ export default function NeuralCanvas() {
       }));
     };
 
-    const draw = () => {
+    // Advance + paint one frame of nodes and their links. Does NOT schedule.
+    const renderFrame = () => {
       ctx.clearRect(0, 0, w, h);
       const R = 150;
       for (let i = 0; i < nodes.length; i++) {
@@ -74,22 +82,57 @@ export default function NeuralCanvas() {
         ctx.fillStyle = rgba(n.gold ? A.b : A.a, A.dark ? 0.6 : 0.5);
         ctx.fill();
       }
-      raf = requestAnimationFrame(draw);
+    };
+
+    const loop = () => {
+      renderFrame();
+      raf = requestAnimationFrame(loop);
+    };
+
+    const stop = () => {
+      if (raf != null) {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    };
+
+    // Animate — unless the visitor prefers reduced motion, then paint one frame.
+    const start = () => {
+      stop();
+      if (reduceMQ.matches) renderFrame();
+      else loop();
     };
 
     build();
-    draw();
-    const onResize = () => build();
+    start();
+
+    const onResize = () => {
+      build();
+      if (reduceMQ.matches) renderFrame(); // repaint the static frame at the new size
+    };
     const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
+    // Pause the loop while the tab is hidden; resume on return (motion mode only).
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (!reduceMQ.matches && raf == null) loop();
+    };
+    // React live if the user toggles their reduced-motion preference.
+    const onReduceChange = () => start();
+
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("visibilitychange", onVisibility);
+    reduceMQ.addEventListener("change", onReduceChange);
+
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
+      reduceMQ.removeEventListener("change", onReduceChange);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
