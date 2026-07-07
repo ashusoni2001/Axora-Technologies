@@ -25,8 +25,8 @@ function App() {
           <Hero />
           <Marquee />
           <Expertise />
-          <About />
           <Work />
+          <About />
           <Contact />
         </main>
         <Footer />

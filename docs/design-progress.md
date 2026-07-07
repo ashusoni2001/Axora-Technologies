@@ -1,6 +1,6 @@
 # Design Overhaul — Progress Log & Resume Handoff
 
-> Last worked: **2026-06-28** (polish phase) · Branch: **`dev-exp`**
+> Last worked: **2026-07-07** (feature phase: CHANGE-01–03 + sector auto-rotation) · Branch: **`dev-exp`**
 > Companions: [`design-audit.md`](./design-audit.md) (overhaul analysis) ·
 > [`polish-audit.md`](./polish-audit.md) (multi-agent polish audit + prioritized backlog).
 > This file is the living build log — read it first when resuming.
@@ -18,14 +18,67 @@
 - **Brand tone:** professional consultancy — **no fabricated stats**.
 
 ## How to resume
-1. `npm run dev` (server runs on **port 5176**; restart it if not running).
-2. You're on `dev-exp`. The Phase 1–5 + liquid-glass overhaul is now **committed** at
-   `2cc02f3 "re-design"`. The polish-phase **quick-wins** batch is **uncommitted** on top.
-3. Polish backlog + priorities live in [`polish-audit.md`](./polish-audit.md). Next recommended
-   step: the **shareability / OG package** (the one HIGH item).
-4. Verify in a real browser (Chrome) — the user works this way.
+1. `npm run dev` (Vite picks a port — it was **5173** last session; check the terminal output).
+2. You're on `dev-exp`. Committed so far: overhaul `2cc02f3 "re-design"` → polish quick-wins
+   `66bfa2a`. **Uncommitted on top:** the feature phase — CHANGE-01/02/03 + 5s sector
+   auto-rotation (see the Feature phase section below for the file list).
+3. **Polish phase is PAUSED** (owner's call, 2026-07-07) — backlog stays parked in
+   [`polish-audit.md`](./polish-audit.md); don't push polish items proactively. Current focus:
+   bug fixes + new features, specs arriving via
+   [`portfolio-required-changes.md`](./portfolio-required-changes.md).
+4. Verify in a real browser (Chrome) — the user works this way. Mind the screenshot quirk noted
+   under "Verification quirk" below.
 
 ---
+
+## Feature phase (2026-07-07) — CHANGE-01/02/03 shipped (uncommitted)
+
+Polish phase paused (quick-wins committed at `66bfa2a`); implemented the three finalized changes
+from [`portfolio-required-changes.md`](./portfolio-required-changes.md):
+
+- **CHANGE-01 — Expertise:** 3 clusters / 9 tiles → **5 domain cards** (2×2 `.dgrid` + full-width
+  horizontal anchor). `expertise.js` now exports `domains` (+ `marqueeItems`); `.cluster`/`.bento`/
+  `.sp-*` CSS deleted. Cards reuse `.xtile` with `.dcard` overrides — **the override block must stay
+  AFTER `.xtile` in `index.css`** (equal specificity; source order decides — this bit us once).
+- **CHANGE-02 — Order:** Hero → Marquee → Expertise → **Work → About** → Contact. `navigation.js`
+  + Navbar scroll-spy ids reordered to match.
+- **CHANGE-03 — Work personalization:** sector chip bar (`.schip`, Featured + 6 sectors from new
+  `data/sectors.js`), per-sector card filtering (AnimatePresence `popLayout`, keys = `p.id`),
+  "Why it matters here" `.angle` strip between tags/foot, `SectorPlaybook` panel (`.pbk-*`),
+  adaptive grid via **classes** `.pgrid.n2`/`.n1` (NOT inline styles — inline would kill the
+  ≤980px auto-fit media query). `.pgrid.n1` is exempt from the auto-fit override on purpose
+  (its centered 720px track shrinks naturally).
+
+**Ripple decisions (owner, 2026-07-07):** hero stat → **"5 Expertise domains"**; Marquee →
+**curated 12-capability ribbon** (`marqueeItems`); Work sub-copy = the personalization invite
+**always** (replaces the old proof line in both states).
+
+**Sector auto-rotation (added same day, owner-specced):** chips auto-advance every **5s**
+(Featured → the 6 sectors → Featured…). Owner decisions: Featured **included** in the loop;
+hover **anywhere in the Work section** pauses (resumes on leave with a fresh 5s);
+**any manual pick / case-study open / touch inside the section stops it permanently**.
+Also gated: only while the section is ≥15% in view (IntersectionObserver), disabled under
+`prefers-reduced-motion`, ticks skipped in hidden tabs, keyboard focus-within pauses like hover.
+All in `Work.jsx` (`auto`/`hovered`/`focused`/`inView` state + one interval effect).
+
+**Verified:** lint + build clean; real-browser pass — desktop, ≤700px, `prefers-reduced-motion`
+(hero word frozen, marquee static, filter swaps instant), all 6 sectors (card counts, CTA labels,
+playbook copy), Featured restore, case-study modal, no horizontal overflow, zero console errors.
+`sectors.js` strings diffed 93/93 verbatim against the spec doc.
+
+**Verification quirk (extends the modal note):** headless-Playwright *viewport* screenshots can
+render a stale compositor frame (~offset scroll) on this stack — trust **full-page screenshots +
+DOM/computed-style checks**, and step-scroll slowly (~350ms/step) so `whileInView` reveals fire.
+
+**Feature-phase working tree (uncommitted):**
+- Modified: `src/App.jsx`, `src/components/layout/Navbar.jsx`, `src/data/expertise.js`,
+  `src/data/hero.js`, `src/data/navigation.js`, `src/index.css`, `src/sections/Expertise.jsx`,
+  `src/sections/Marquee.jsx`, `src/sections/Work.jsx`, `docs/design-progress.md`
+- New: `src/data/sectors.js`, `src/components/ui/SectorPlaybook.jsx`,
+  `docs/portfolio-required-changes.md`
+- Suggested commit: `CHANGE-01..03: 5-domain expertise, About after Work, sector
+  personalization + 5s auto-rotation` (single commit is simplest — `index.css` carries
+  hunks from both CHANGE-01 and CHANGE-03).
 
 ## Polish phase (2026-06-28)
 
@@ -127,7 +180,7 @@ BEFORE touching live components. Not started. (See `polish-audit.md` for all 10.
 
 ---
 
-## Files changed (uncommitted on `dev-exp`)
+## Files changed (overhaul batch — since committed in `2cc02f3 "re-design"`)
 - `index.html` — font links (Bricolage + Hanken + JetBrains Mono)
 - `src/index.css` — tokens, type wiring, liquid glass, nav island, modal 3B, bento, neu, clay
 - `src/lib/theme.js` — `frost --noise-op` 0 → 0.4

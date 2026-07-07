@@ -8,7 +8,7 @@ import { useScrollSpy } from "../../hooks/useScrollSpy";
 
 export default function Navbar() {
   const { solid, hidden } = useNavChrome();
-  const active = useScrollSpy(["expertise", "about", "work", "contact"]);
+  const active = useScrollSpy(["expertise", "work", "about", "contact"]);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
