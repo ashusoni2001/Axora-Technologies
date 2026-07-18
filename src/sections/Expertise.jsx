@@ -11,7 +11,7 @@ export default function Expertise() {
           kicker="What we do"
           title="Core expertise, engineered deep."
           accent="expertise"
-          sub="Five domains across AI, data and software — delivered as one integrated engineering practice."
+          sub="Our expertise spans AI, data, analytics, cloud, and software development working together to deliver complete, production-ready solutions."
         />
 
         <div className="dgrid">

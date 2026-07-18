@@ -5,7 +5,7 @@ export const domains = [
   {
     icon: "aiEngineering",
     title: "Generative AI & Agents",
-    desc: "Systems that reason, plan and act — from RAG to autonomous multi-agent products, shipped at scale.",
+    desc: "Stop wasting hours on repetitive work. We build AI systems that automate business processes, customer support, document handling, reporting, and internal workflows so your team can focus on higher-value work.",
     chips: [
       "AI system design",
       "RAG pipelines",
@@ -18,7 +18,7 @@ export const domains = [
   {
     icon: "deepLearning",
     title: "Core ML & Deep Learning",
-    desc: "From training deep neural networks to deploying models behind production-grade applications.",
+    desc: "From training deep neural networks to deploying models, transform historical data into accurate predictions. Our ML solutions help businesses forecast demand, detect fraud, classify data, and make smarter decisions using predictive models.",
     chips: [
       "Predictive modelling",
       "Computer vision",
@@ -32,7 +32,7 @@ export const domains = [
   {
     icon: "dataScience",
     title: "Data Science & Engineering",
-    desc: "Large, messy datasets turned into decisions — rigorous modelling on pipelines built to last.",
+    desc: "Messy data costs money. We build scalable pipelines that clean, organize, and prepare your data for reporting, AI, and analytics.",
     chips: [
       "Statistical modelling",
       "Predictive analysis",
@@ -44,8 +44,8 @@ export const domains = [
   },
   {
     icon: "powerbi",
-    title: "Analytics & BI",
-    desc: "Dashboards and reporting that make complex operational data instantly understandable.",
+    title: "Business Intelligence",
+    desc: "Make faster decisions using real-time dashboards. We design Power BI dashboards that turn complex data into simple visual insights.",
     chips: [
       "Power BI dashboards",
       "Business intelligence",
@@ -57,7 +57,7 @@ export const domains = [
   {
     icon: "softwareEngineering",
     title: "Software Engineering",
-    desc: "The discipline underneath everything we ship.",
+    desc: "From MVPs to enterprise platforms, we build secure, scalable software that grows with your business.",
     chips: [
       "Backend & APIs",
       "Clean architecture",
