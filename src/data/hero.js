@@ -6,7 +6,7 @@ export const rotatingWords = [
 ];
 
 export const heroSubtitle =
-  "Axora Technologies designs and ships production-grade AI, data and software systems — from machine learning and deep learning to analytics, Power BI and full-stack engineering.";
+  "Whether you need AI automation, machine learning, data analytics, dashboards, or custom software we build solutions that solve real business problems.";
 
 export const heroMeta = [
   { num: "5", label: "Expertise domains" },

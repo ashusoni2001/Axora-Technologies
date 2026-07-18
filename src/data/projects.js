@@ -44,7 +44,7 @@ export const projects = [
   {
     id: "saferide",
     title: "SafeRide — Real-Time Threat Detection",
-    desc: "An AI-driven passenger-safety platform for ride-sharing, engineered for women's safety. Continuously listens for verbal harassment, kidnapping and aggression through a 7-stage audio pipeline — with voice fingerprinting to tell driver from passenger and automatic emergency escalation across Hindi and English.",
+    desc: "An AI-powered safety platform that monitors rides in real time using voice intelligence. It detects potential threats, identifies emergencies, and enables faster responses to help keep passengers safe.",
     tags: ["Python", "FastAPI", "Flutter", "Whisper", "Llama 3.2", "ECAPA-TDNN"],
     status: "build",
     statusLabel: "In production hardening",
@@ -57,9 +57,9 @@ export const projects = [
       kicker: "Real-time audio AI · Women's safety",
       hook: "Safety that doesn't wait for a button.",
       summary:
-        "SafeRide listens to in-vehicle audio in real time and detects threats — verbal harassment, kidnapping language, physical aggression — then auto-escalates to emergency contacts with GPS. It works online via a 7-stage server pipeline and fully offline on-device, switching seamlessly between them.",
+        "SafeRide listens to in-vehicle audio in real time and detects threats — verbal harassment, kidnapping language, physical aggression — then runs a 30-second countdown and connects to your alert system with the last known location. It works online via a 7-stage server pipeline and fully offline on-device, switching between them.",
       problem:
-        "Existing ride-share safety features are reactive: an SOS button only helps if the passenger can consciously reach for it. In the moments that matter most — threatened, restrained, or in shock — that assumption breaks. SafeRide flips the model: it monitors continuously and escalates on its own, purpose-built for the realities of women's safety in India, across Hindi, English and code-mixed Hinglish.",
+        "Existing ride-share safety features are reactive: an SOS button only helps if the passenger can consciously reach for it. In the moments that matter most — threatened, restrained, or in shock — that assumption breaks. SafeRide flips the model: it monitors continuously and escalates on its own, purpose-built for the realities of women's safety in India.",
       pipeline: {
         variant: "linear",
         note: "Switch modes to see how the path adapts to connectivity.",
@@ -79,7 +79,7 @@ export const projects = [
             { name: "Audio", sub: "PCM16 · 16kHz", kind: "source" },
             { name: "On-device VAD", sub: "Silero (ONNX)" },
             { name: "On-device ASR", sub: "Whisper tiny int8" },
-            { name: "Keyword Classifier", sub: "Hindi / EN / Hinglish" },
+            { name: "Keyword Classifier", sub: "local keyword match" },
             { name: "Local Alert", sub: "notify + queue", kind: "sink" },
           ],
           Hybrid: [
@@ -96,7 +96,7 @@ export const projects = [
         { icon: "zap", title: "Proactive, not reactive", text: "Detects threats automatically from speech — no panic-button press required in the moment it matters." },
         { icon: "users", title: "Voice fingerprinting (RVFM)", text: "ECAPA-TDNN embeddings tell passenger from driver, so every threat carries who said it." },
         { icon: "refresh", title: "Online · Offline · Hybrid", text: "Full on-device fallback with sherpa-onnx + keyword classifier when the network drops. No dead zones." },
-        { icon: "shield", title: "Auto-escalation with GPS", text: "30-second countdown, then SMS to emergency contacts and push alert with live location." },
+        { icon: "shield", title: "Auto-escalation with location", text: "30-second countdown, then connects to your alert system (SMS or push) with the last known location." },
       ],
       matrix: {
         columns: ["SafeRide", "SOS button"],
@@ -104,8 +104,8 @@ export const projects = [
           { feature: "Trigger", values: ["Automatic, always-on", "Manual press"] },
           { feature: "Works when restrained", values: ["yes", "no"] },
           { feature: "Speaker identity", values: ["Driver vs passenger", "none"] },
-          { feature: "Offline operation", values: ["Full on-device", "none"] },
-          { feature: "Language", values: ["Hindi · English · Hinglish", "n/a"] },
+          { feature: "Offline operation", values: ["On-device detection", "none"] },
+          { feature: "Language", values: ["Multilingual", "n/a"] },
         ],
       },
       stack: [
@@ -116,8 +116,8 @@ export const projects = [
       ],
       proof: [
         { value: "299", label: "Automated tests" },
-        { value: "12/12", label: "Hindi test accuracy" },
-        { value: "0", label: "False positives" },
+        { value: "7", label: "Stage pipeline" },
+        { value: "3", label: "Languages" },
         { value: "5", label: "ML models" },
       ],
     },
@@ -126,10 +126,10 @@ export const projects = [
   {
     id: "airrag",
     title: "AirRAG — Private Document Intelligence",
-    desc: "An agent-first enterprise assistant that turns a document library into a conversational knowledge base — inside WhatsApp, Telegram, the web and a REST API. The full AI stack can run on the customer's own hardware, fully air-gapped, with page-level citations on every answer.",
-    tags: ["Python", "FastAPI", "Ollama", "LanceDB", "BGE-M3", "Knowledge Graph"],
+    desc: "An agent-first enterprise assistant that turns a document library into a conversational knowledge base — inside WhatsApp, Telegram, the web and a REST API. The full AI stack can run on the customer's own hardware, with page-level citations on every answer.",
+    tags: ["Python", "FastAPI", "Ollama", "LanceDB", "BGE-M3", "ReAct Agent"],
     status: "live",
-    statusLabel: "Live pilot · M3M",
+    statusLabel: "Live pilot",
     metrics: [
       { value: "~20K", label: "Lines of code" },
       { value: "39", label: "File formats" },
@@ -139,9 +139,9 @@ export const projects = [
       kicker: "Enterprise RAG · Live pilot",
       hook: "Your data never leaves your walls.",
       summary:
-        "AirRAG is a conversational AI agent for an organization's documents. It reasons about each question with a ReAct loop and seven tools — searching, delivering files, analysing data, traversing a knowledge graph, recalling memory — and grounds every claim with a page-level citation. The whole stack can run locally and air-gapped, or switch to OpenAI / Anthropic per channel when policy allows.",
+        "AirRAG is a conversational AI agent for an organization's documents. It reasons about each question with a ReAct loop and multiple tools — searching, delivering files, analysing data, recalling memory — and grounds every claim with a page-level citation. The whole stack can run locally on your own hardware, or switch to OpenAI / Anthropic per channel when policy allows.",
       problem:
-        "Most AI document tools require shipping your data to a third party — a non-starter for regulated industries, IP-sensitive teams, and anyone handling client confidentiality. And the work happens on WhatsApp, not enterprise web portals. AirRAG was built around both constraints: a local-first AI stack that lives inside the messaging apps teams already use, with enterprise permissions and citations that hold up to scrutiny.",
+        "Most AI document tools require shipping your data to a third party — a non-starter for regulated industries, IP-sensitive teams, and anyone handling client confidentiality. And the work happens on WhatsApp, not enterprise web portals. AirRAG was built around both constraints: a local-first AI stack that lives inside the messaging apps teams already use, with role-based download permissions and citations that hold up to scrutiny.",
       pipeline: {
         variant: "agent",
         channels: ["WhatsApp", "Telegram", "Web UI", "REST API"],
@@ -158,17 +158,17 @@ export const projects = [
         backends: ["OpenAI", "Anthropic", "Ollama", "Local GGUF"],
       },
       highlights: [
-        { icon: "shield", title: "Air-gapped by default", text: "Parsing, embeddings, retrieval and the LLM can all run on your hardware. Once models are cached, zero outbound calls." },
-        { icon: "machineLearning", title: "Hybrid retrieval + reranking", text: "BM25 + dense + ColBERT fused, then a cross-encoder reranker — every answer cited to the exact page and chapter." },
+        { icon: "shield", title: "Runs on your own hardware", text: "Parsing, embeddings, retrieval and the LLM can all run on your own servers — a local-first setup with no dependency on an external AI cloud." },
+        { icon: "machineLearning", title: "Hybrid retrieval + reranking", text: "BM25 + dense retrieval fused, then a cross-encoder reranker — every answer cited to the exact page." },
         { icon: "users", title: "Role-based permissions", text: "Admin / Employee roles with per-document download grants tied to verified channel identity." },
-        { icon: "layers", title: "Memory + knowledge graph", text: "Per-user cross-session memory and an LLM-extracted entity graph for relational, multi-document questions." },
+        { icon: "layers", title: "Memory across sessions", text: "Per-user cross-session memory, so it remembers context, preferences and prior questions between conversations." },
       ],
       matrix: {
         columns: ["AirRAG", "Public chatbots", "Enterprise search"],
         rows: [
           { feature: "Where data goes", values: ["On-prem (or cloud, by choice)", "Cloud provider", "On-prem"] },
           { feature: "WhatsApp / Telegram", values: ["Native", "no", "no"] },
-          { feature: "Voice, regional languages", values: ["12 languages", "English only", "no"] },
+          { feature: "Voice, regional languages", values: ["Multilingual", "Limited", "no"] },
           { feature: "File delivery + permissions", values: ["In-chat, role-aware", "no", "Doc list only"] },
           { feature: "Memory across sessions", values: ["Per-user, durable", "Limited", "no"] },
           { feature: "Citations", values: ["Inline, page-level", "Sometimes", "Doc links"] },
@@ -185,7 +185,7 @@ export const projects = [
         { value: "~20K", label: "Lines of code" },
         { value: "39", label: "File formats" },
         { value: "7", label: "Agent tools" },
-        { value: "12", label: "Languages" },
+        { value: "4", label: "Channels" },
       ],
     },
   },
