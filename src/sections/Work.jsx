@@ -3,13 +3,14 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "../components/ui/SectionHeading";
 import Reveal from "../components/ui/Reveal";
 import SpotCard from "../components/ui/SpotCard";
-import StatBand from "../components/ui/StatBand";
 import ProjectModal from "../components/ui/ProjectModal";
-import SectorPlaybook from "../components/ui/SectorPlaybook";
 import Icon from "../components/ui/Icon";
 import { projects } from "../data/projects";
 import { sectors } from "../data/sectors";
 import { revealVariants, viewportConfig, revealTransition } from "../lib/animations";
+
+// Fast id -> project lookup for rendering a sector's card list in a chosen order.
+const byId = Object.fromEntries(projects.map((p) => [p.id, p]));
 
 export default function Work() {
   const [active, setActive] = useState(null);
@@ -53,9 +54,13 @@ export default function Work() {
   const openCase = (p) => { setAuto(false); setActive(p); };
 
   const current = sector === null ? null : sectors[sector];
-  const visible = projects.filter((p) => !current || current.proof[p.id]);
-  // Columns follow the visible count so sector views don't leave dead columns.
-  const nClass = visible.length === 2 ? " n2" : visible.length === 1 ? " n1" : "";
+  // Featured shows every project (openable case studies). A sector shows all
+  // three products, in fit order, each reframed with sector-specific copy.
+  const items = current
+    ? current.cards.map((c) => ({ p: byId[c.id], desc: c.desc }))
+    : projects.map((p) => ({ p, desc: p.desc }));
+  // Columns follow the visible count so views don't leave dead columns.
+  const nClass = items.length === 2 ? " n2" : items.length === 1 ? " n1" : "";
 
   return (
     <section
@@ -77,7 +82,7 @@ export default function Work() {
           kicker="Featured work"
           title="Builds that prove the practice."
           accent="prove the practice."
-          sub="Pick your industry — we'll show you the work and the problems we'd attack for you."
+          sub="Pick your industry — we'll show you the builds that fit."
         />
 
         <Reveal className="schips" role="group" aria-label="Show work by industry">
@@ -102,12 +107,13 @@ export default function Work() {
 
         <div className={`pgrid${nClass}`}>
           <AnimatePresence mode="popLayout">
-            {visible.map((p, i) => {
+            {items.map(({ p, desc }, i) => {
+              // Every card with a case study opens the same modal — in Featured
+              // and in a sector view (which also keeps the shared CTA below).
               const openable = !!p.caseStudy;
-              const angle = current?.proof[p.id];
               return (
                 <motion.div
-                  key={p.id}
+                  key={`${sector ?? "featured"}-${p.id}`}
                   layout={!reduce}
                   variants={reduce ? undefined : revealVariants.up}
                   initial="hidden"
@@ -123,9 +129,7 @@ export default function Work() {
                   <SpotCard className={`pcard ${openable ? "openable" : ""}`}>
                     <div className="topline" />
                     <h3>{p.title}</h3>
-                    <p>{p.desc}</p>
-
-                    {p.metrics && <StatBand items={p.metrics} variant="card" />}
+                    <p>{desc}</p>
 
                     <div className="tags">
                       {p.tags.map((t) => (
@@ -133,18 +137,7 @@ export default function Work() {
                       ))}
                     </div>
 
-                    {angle && (
-                      <div className="angle">
-                        <span className="lbl">Why it matters here</span>
-                        <p>{angle}</p>
-                      </div>
-                    )}
-
                     <div className="foot">
-                      <span className={`status ${p.status === "live" ? "live" : ""}`}>
-                        <span className="d" />
-                        {p.statusLabel}
-                      </span>
                       <div className="actions">
                         {p.video && (
                           <a
@@ -181,7 +174,14 @@ export default function Work() {
           </AnimatePresence>
         </div>
 
-        {current && <SectorPlaybook key={current.name} sector={current} />}
+        {current && (
+          <div className="sector-cta">
+            <a className="btn btn-primary" href="#contact">
+              Discuss a {current.name.split(" &")[0].split(" (")[0]} build
+              <Icon name="arrowRight" size={16} />
+            </a>
+          </div>
+        )}
       </div>
 
       <ProjectModal project={active} onClose={() => setActive(null)} />

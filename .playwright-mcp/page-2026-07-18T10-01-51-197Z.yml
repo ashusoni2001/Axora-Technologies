@@ -1,0 +1,246 @@
+- generic [ref=e3]:
+  - navigation:
+    - generic [ref=e4]:
+      - link "Axora Technologies home" [ref=e5] [cursor=pointer]:
+        - /url: "#top"
+        - img "Axora" [ref=e6]
+        - generic [ref=e7]:
+          - text: Axora
+          - generic [ref=e8]: Technologies
+      - generic [ref=e9]:
+        - link "Expertise" [ref=e10] [cursor=pointer]:
+          - /url: "#expertise"
+        - link "Work" [ref=e11] [cursor=pointer]:
+          - /url: "#work"
+        - link "About" [ref=e12] [cursor=pointer]:
+          - /url: "#about"
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: "#contact"
+      - link "Get in touch" [ref=e14] [cursor=pointer]:
+        - /url: "#contact"
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - heading "We build Intelligent AI-Driven Data-Driven Production-Grade systems for modern business." [level=1] [ref=e20]:
+        - text: We build
+        - generic [ref=e21]:
+          - generic [ref=e22]: Intelligent
+          - generic [ref=e23]: AI-Driven
+          - generic [ref=e24]: Data-Driven
+          - generic [ref=e25]: Production-Grade
+        - text: systems for modern business.
+      - paragraph [ref=e26]: Whether you need AI automation, machine learning, data analytics, dashboards, or custom software we build solutions that solve real business problems.
+      - generic [ref=e27]:
+        - link "Start a project" [ref=e28] [cursor=pointer]:
+          - /url: "#contact"
+        - link "Explore our expertise" [ref=e31] [cursor=pointer]:
+          - /url: "#expertise"
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: "5"
+          - generic [ref=e35]: Expertise domains
+        - generic [ref=e37]:
+          - generic [ref=e38]: 24+
+          - generic [ref=e39]: Technologies
+        - generic [ref=e41]:
+          - generic [ref=e42]: "3"
+          - generic [ref=e43]: Featured builds
+    - generic [ref=e45]:
+      - generic [ref=e46]: RAG pipelines
+      - generic [ref=e48]: Multi-agent architectures
+      - generic [ref=e50]: LLM evaluation
+      - generic [ref=e52]: Computer vision
+      - generic [ref=e54]: Speech & language
+      - generic [ref=e56]: Forecasting
+      - generic [ref=e58]: Statistical modelling
+      - generic [ref=e60]: ETL pipelines
+      - generic [ref=e62]: Big Data analytics
+      - generic [ref=e64]: Power BI dashboards
+      - generic [ref=e66]: Backend & APIs
+      - generic [ref=e68]: Full-stack web apps
+      - generic [ref=e70]: RAG pipelines
+      - generic [ref=e72]: Multi-agent architectures
+      - generic [ref=e74]: LLM evaluation
+      - generic [ref=e76]: Computer vision
+      - generic [ref=e78]: Speech & language
+      - generic [ref=e80]: Forecasting
+      - generic [ref=e82]: Statistical modelling
+      - generic [ref=e84]: ETL pipelines
+      - generic [ref=e86]: Big Data analytics
+      - generic [ref=e88]: Power BI dashboards
+      - generic [ref=e90]: Backend & APIs
+      - generic [ref=e92]: Full-stack web apps
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]: What we do
+        - heading "Core expertise, engineered deep." [level=2] [ref=e100]
+        - paragraph [ref=e101]: Our expertise spans AI, data, analytics, cloud, and software development working together to deliver complete, production-ready solutions.
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - heading "Generative AI & Agents" [level=4] [ref=e110]
+            - paragraph [ref=e111]: Stop wasting hours on repetitive work. We build AI systems that automate business processes, customer support, document handling, reporting, and internal workflows so your team can focus on higher-value work.
+          - generic [ref=e112]:
+            - generic [ref=e113]: AI system design
+            - generic [ref=e114]: RAG pipelines
+            - generic [ref=e115]: Multi-agent architectures
+            - generic [ref=e116]: Orchestration engines
+            - generic [ref=e117]: LLM evaluation
+            - generic [ref=e118]: Scalable AI applications
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - heading "Core ML & Deep Learning" [level=4] [ref=e132]
+            - paragraph [ref=e133]: From training deep neural networks to deploying models, transform historical data into accurate predictions. Our ML solutions help businesses forecast demand, detect fraud, classify data, and make smarter decisions using predictive models.
+          - generic [ref=e134]:
+            - generic [ref=e135]: Predictive modelling
+            - generic [ref=e136]: Computer vision
+            - generic [ref=e137]: Speech & language
+            - generic [ref=e138]: Forecasting
+            - generic [ref=e139]: PyTorch
+            - generic [ref=e140]: TensorFlow
+            - generic [ref=e141]: Model deployment
+        - generic [ref=e142]:
+          - generic [ref=e143]:
+            - heading "Data Science & Engineering" [level=4] [ref=e153]
+            - paragraph [ref=e154]: Messy data costs money. We build scalable pipelines that clean, organize, and prepare your data for reporting, AI, and analytics.
+          - generic [ref=e155]:
+            - generic [ref=e156]: Statistical modelling
+            - generic [ref=e157]: Predictive analysis
+            - generic [ref=e158]: ETL pipelines
+            - generic [ref=e159]: Big Data analytics
+            - generic [ref=e160]: Cleaning & transformation
+            - generic [ref=e161]: Experimentation
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - heading "Business Intelligence" [level=4] [ref=e168]
+            - paragraph [ref=e169]: Make faster decisions using real-time dashboards. We design Power BI dashboards that turn complex data into simple visual insights.
+          - generic [ref=e170]:
+            - generic [ref=e171]: Power BI dashboards
+            - generic [ref=e172]: Business intelligence
+            - generic [ref=e173]: Executive reporting
+            - generic [ref=e174]: Interactive data apps
+            - generic [ref=e175]: KPI design
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - heading "Software Engineering" [level=4] [ref=e182]
+            - paragraph [ref=e183]: From MVPs to enterprise platforms, we build secure, scalable software that grows with your business.
+          - generic [ref=e184]:
+            - generic [ref=e185]: Backend & APIs
+            - generic [ref=e186]: Clean architecture
+            - generic [ref=e187]: Full-stack web apps
+            - generic [ref=e188]: Cross-platform mobile
+            - generic [ref=e189]: Testing & CI/CD
+    - generic [ref=e191]:
+      - generic [ref=e192]:
+        - generic [ref=e193]: Featured work
+        - heading "Builds that prove the practice." [level=2] [ref=e196]
+        - paragraph [ref=e197]: Pick your industry — we'll show you the builds that fit.
+      - group "Show work by industry" [ref=e198]:
+        - button "Featured" [pressed] [ref=e199] [cursor=pointer]
+        - button "Real Estate" [ref=e200] [cursor=pointer]
+        - button "Healthcare & Pharma" [ref=e201] [cursor=pointer]
+        - button "LegalTech & Professional Services" [ref=e202] [cursor=pointer]
+        - button "Logistics & E-commerce" [ref=e203] [cursor=pointer]
+        - button "SaaS & Enterprise IT (GCCs)" [ref=e204] [cursor=pointer]
+        - button "Mobility & Consumer Safety" [ref=e205] [cursor=pointer]
+      - generic [ref=e206]:
+        - generic [ref=e208] [cursor=pointer]:
+          - heading "Project JAAGI — The Awakened One" [level=3] [ref=e210]
+          - paragraph [ref=e211]: A privacy-first, voice-controlled AI desktop agent running the entire voice pipeline — speech recognition, synthesis and activity detection — on local GPU hardware, so zero audio leaves the device. Powered by Claude for reasoning, with autonomous browser automation, persistent cross-session memory and a web control panel.
+          - generic [ref=e212]:
+            - generic [ref=e213]: Python
+            - generic [ref=e214]: PyTorch
+            - generic [ref=e215]: Anthropic SDK
+            - generic [ref=e216]: FastAPI
+            - generic [ref=e217]: Whisper
+            - generic [ref=e218]: Kokoro
+            - generic [ref=e219]: Playwright
+          - generic [ref=e221]:
+            - link "Watch" [ref=e222]:
+              - /url: https://drive.google.com/file/d/1c5ybObCh2I9zBZLYa_qXiylRecI9S6oy/view?usp=sharing
+            - button "Case study" [ref=e225]
+          - button "Open Project JAAGI — The Awakened One case study" [ref=e228]
+        - generic [ref=e230] [cursor=pointer]:
+          - heading "SafeRide — Real-Time Threat Detection" [level=3] [ref=e232]
+          - paragraph [ref=e233]: An AI-powered safety platform that monitors rides in real time using voice intelligence. It detects potential threats, identifies emergencies, and enables faster responses to help keep passengers safe.
+          - generic [ref=e234]:
+            - generic [ref=e235]: Python
+            - generic [ref=e236]: FastAPI
+            - generic [ref=e237]: Flutter
+            - generic [ref=e238]: Whisper
+            - generic [ref=e239]: Llama 3.2
+            - generic [ref=e240]: ECAPA-TDNN
+          - button "Case study" [ref=e243]
+          - button "Open SafeRide — Real-Time Threat Detection case study" [ref=e246]
+        - generic [ref=e248] [cursor=pointer]:
+          - heading "AirRAG — Private Document Intelligence" [level=3] [ref=e250]
+          - paragraph [ref=e251]: An agent-first enterprise assistant that turns a document library into a conversational knowledge base — inside WhatsApp, Telegram, the web and a REST API. The full AI stack can run on the customer's own hardware, with page-level citations on every answer.
+          - generic [ref=e252]:
+            - generic [ref=e253]: Python
+            - generic [ref=e254]: FastAPI
+            - generic [ref=e255]: Ollama
+            - generic [ref=e256]: LanceDB
+            - generic [ref=e257]: BGE-M3
+            - generic [ref=e258]: ReAct Agent
+          - button "Case study" [ref=e261]
+          - button "Open AirRAG — Private Document Intelligence case study" [ref=e264]
+    - generic [ref=e266]:
+      - generic [ref=e267]:
+        - generic [ref=e268]: Why Axora
+        - heading "Applied AI, built like real software." [level=2] [ref=e271]
+      - generic [ref=e272]:
+        - paragraph [ref=e273]: Axora Technologies designs and delivers production-grade AI systems, data platforms and full-stack software — operating at the intersection of applied AI research and enterprise engineering.
+        - paragraph [ref=e274]: "Our methodology is rooted in rigorous engineering: from architecture and model selection to deployment pipelines, evaluation and monitoring. Every solution is built for reliability, performance and long-term maintainability."
+      - generic [ref=e275]:
+        - generic [ref=e276]: Production-Grade Engineering
+        - generic [ref=e283]: Rapid Prototype to Deployment
+        - generic [ref=e289]: Dedicated Technical Partnership
+        - generic [ref=e297]: Agile & Iterative Delivery
+    - generic [ref=e306]:
+      - generic [ref=e307]: Let's talk
+      - heading "Let's build something extraordinary." [level=2] [ref=e309]
+      - paragraph [ref=e310]: Ready to turn an idea into a production AI or data system? Tell us what you're building — we'll bring the engineering.
+      - generic [ref=e311]:
+        - link "Start a project" [ref=e312] [cursor=pointer]:
+          - /url: mailto:support@axoratechnologies.in?subject=New%20Project%20Inquiry&body=Hi%20Axora%20Team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0A
+        - link "View our work" [ref=e315] [cursor=pointer]:
+          - /url: "#work"
+      - link "support@axoratechnologies.in" [ref=e317] [cursor=pointer]:
+        - /url: mailto:support@axoratechnologies.in
+  - contentinfo [ref=e321]:
+    - generic [ref=e322]:
+      - generic [ref=e323]:
+        - link "Axora Technologies home" [ref=e324] [cursor=pointer]:
+          - /url: "#top"
+          - img "Axora" [ref=e325]
+          - generic [ref=e326]:
+            - text: Axora
+            - generic [ref=e327]: Technologies
+        - paragraph [ref=e328]: AI engineering & software consultancy. Building intelligent systems for modern business.
+        - generic [ref=e329]:
+          - generic "GitHub" [ref=e330]
+          - link "LinkedIn" [ref=e333] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/axora-technologies-exports/
+          - link "Email" [ref=e337] [cursor=pointer]:
+            - /url: mailto:support@axoratechnologies.in
+      - generic [ref=e341]:
+        - heading "Navigate" [level=4] [ref=e342]
+        - list [ref=e343]:
+          - listitem [ref=e344]:
+            - link "Expertise" [ref=e345] [cursor=pointer]:
+              - /url: "#expertise"
+          - listitem [ref=e346]:
+            - link "Work" [ref=e347] [cursor=pointer]:
+              - /url: "#work"
+          - listitem [ref=e348]:
+            - link "About" [ref=e349] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e350]:
+            - link "Contact" [ref=e351] [cursor=pointer]:
+              - /url: "#contact"
+      - generic [ref=e352]:
+        - heading "Contact" [level=4] [ref=e353]
+        - list [ref=e354]:
+          - listitem [ref=e355]:
+            - link "support@axoratechnologies.in" [ref=e356] [cursor=pointer]:
+              - /url: mailto:support@axoratechnologies.in
+    - generic [ref=e357]: © 2026 Axora Technologies. All rights reserved.

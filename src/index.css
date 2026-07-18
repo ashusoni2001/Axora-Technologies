@@ -426,16 +426,14 @@ img { display: block; max-width: 100%; }
 .pgrid.n1 { grid-template-columns: minmax(0, 720px); justify-content: center; }
 @media (max-width: 980px) { .pgrid, .pgrid.n2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } }
 .pgrid > * { height: 100%; }
-.pcard { height: 100%; padding: 30px; display: flex; flex-direction: column; text-align: left; }
-.pcard .topline { height: 2px; width: 56px; border-radius: 2px; background: linear-gradient(90deg, var(--accent-3), var(--accent-2)); transition: width .5s var(--ease); }
+.pcard { height: 100%; padding: 30px; display: flex; flex-direction: column; text-align: center; }
+.pcard .topline { height: 2px; width: 56px; margin-inline: auto; border-radius: 2px; background: linear-gradient(90deg, var(--accent-3), var(--accent-2)); transition: width .5s var(--ease); }
 .pcard:hover .topline { width: 100%; }
 .pcard h3 { font-size: 20px; font-weight: 600; color: var(--ink-0); margin: 22px 0 12px; letter-spacing: -0.015em; }
 .pcard p { font-size: 14.5px; color: var(--ink-2); line-height: 1.62; margin: 0 0 20px; }
-.pcard .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
-.pcard .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); margin-top: auto; }
-.pcard .status { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); display: inline-flex; align-items: center; gap: 7px; }
-.pcard .status .d { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); }
-.pcard .status.live .d { background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+.pcard .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-bottom: 22px; }
+.pcard .foot { display: flex; align-items: center; justify-content: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); margin-top: auto; }
+.pcard .cta-full { width: 100%; }
 .plink {
   display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--accent);
   padding: 8px 14px; border-radius: 10px; border: 1px solid var(--accent-line); background: var(--accent-soft);
@@ -446,6 +444,7 @@ img { display: block; max-width: 100%; }
 
 /* --- Sector chips (CHANGE-03) --- */
 .schips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 30px; }
+.sector-cta { display: flex; justify-content: center; margin-top: 34px; }
 .schip {
   font-family: var(--mono); font-size: 12.5px; color: var(--ink-1);
   padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2);
@@ -457,14 +456,6 @@ img { display: block; max-width: 100%; }
   color: var(--accent-ink); font-weight: 700; border-color: transparent;
 }
 
-/* --- "Why it matters here" angle strip (between .tags and .foot) --- */
-.angle {
-  display: flex; flex-direction: column; gap: 6px;
-  background: var(--accent-soft); border: 1px solid var(--accent-line);
-  border-radius: 12px; padding: 12px 14px; margin: -4px 0 20px;
-}
-.angle .lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
-.angle p { font-size: 13px; line-height: 1.55; color: var(--ink-0); margin: 0; }
 
 /* --- Sector playbook panel (CHANGE-03) --- */
 .pbk { padding: 36px 38px 32px; margin-top: 22px; }
@@ -590,8 +581,7 @@ img { display: block; max-width: 100%; }
   background: none; border: 0; padding: 0; margin: 0;
 }
 .pcard .foot { position: relative; z-index: 2; flex-wrap: wrap; row-gap: 12px; }
-.pcard .status { white-space: nowrap; }
-.pcard .actions { display: inline-flex; gap: 8px; margin-left: auto; }
+.pcard .actions { display: inline-flex; gap: 8px; }
 .plink { position: relative; z-index: 2; white-space: nowrap; }
 .plink.ghost { color: var(--ink-2); border-color: var(--line); background: var(--surface-2); }
 .plink.ghost:hover { color: var(--ink-0); background: var(--surface); border-color: var(--line-strong); }

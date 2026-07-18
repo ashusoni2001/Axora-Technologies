@@ -1,6 +1,6 @@
 # Design Overhaul — Progress Log & Resume Handoff
 
-> Last worked: **2026-07-07** (feature phase: CHANGE-01–03 + sector auto-rotation) · Branch: **`dev-exp`**
+> Last worked: **2026-07-18** (Section 5 WIRED + curated per-industry + honesty/copy refinements — see Content phase §C) · Branch: **`dev-exp`**
 > Companions: [`design-audit.md`](./design-audit.md) (overhaul analysis) ·
 > [`polish-audit.md`](./polish-audit.md) (multi-agent polish audit + prioritized backlog).
 > This file is the living build log — read it first when resuming.
@@ -28,6 +28,66 @@
    [`portfolio-required-changes.md`](./portfolio-required-changes.md).
 4. Verify in a real browser (Chrome) — the user works this way. Mind the screenshot quirk noted
    under "Verification quirk" below.
+
+---
+
+## Content phase (2026-07-14) — Work redesign + Section 5 rewrite (IN PROGRESS, uncommitted)
+
+> **Update 2026-07-18 — Section 5 is now WIRED, curated, and refined in code (see §C below).** The
+> [`section5-rewrite.md`](./section5-rewrite.md) draft is **SUPERSEDED** (it was the lead/support/set-aside
+> model; the shipped approach is *curated genuine-fit per industry*). Remaining: finalise per-industry card
+> copy for 5 industries (judge-panel), a few owner decisions, and the non-Section-5 doc items — see
+> "Open for next session" below.
+
+### A. Work section — CHANGE-03 revision "Variant B" (implemented, uncommitted; lint clean, DOM-verified)
+Owner reviewed a browser mockup and picked **Variant B**. Work now has **two clean modes**:
+- **Removed everywhere:** `SectorPlaybook` (import + render), the "Why it matters here" `.angle` strip,
+  and the status badges (Live demo / In production hardening / Live pilot). Dead CSS (`.angle`, `.status`)
+  deleted. `SectorPlaybook.jsx` + `sectors.js` playbook fields LEFT unused (reversible).
+- **Featured mode** = explore proof: centred cards, Watch (JAAGI only) + Case study, cards openable →
+  modal. **Industry mode** = convert: each mapped card shows ONE full-width primary CTA
+  `Discuss a <industry> build` → `#contact` (label = `name.split(" &")[0].split(" (")[0]`); no
+  Watch/Case-study, card not openable, no `.pcard-hit`.
+- **Both views centred** (`.pcard text-align:center`, `.tags`/`.foot` centred, topline = centred dash);
+  added `.cta-full`. Chip 5s auto-rotation + adaptive `.pgrid.n1/.n2` KEPT.
+- Files: `src/sections/Work.jsx`, `src/index.css`. Sub-copy → "Pick your industry — we'll show you the
+  builds that fit." (**placeholder**, owner to finalise).
+
+### B. Section 5 (industry × project matrix) — code-grounded audit + neuromarketing rewrite
+Owner's aim: make Section 5 **easy for a NON-TECHNICAL visitor** and grab attention via neuromarketing —
+without overclaiming. Done via two multi-agent workflows (Opus, xhigh).
+
+**B1 — Ground-truth audit** (10 agents read the ACTUAL code of `A:\ML_WORK\ML_WORK\{AirRag-v2, JAAGI,
+SafeRide-V2}`; principal-architect + adversarial honesty pass). Verdict: current Section 5 is
+systematically **overclaimed**. Fit across 18 cells: **2 strong / 8 plausible / 7 stretch / 1 misfit.**
+Leads: **AirRAG × Real Estate** (real M3M pilot), **SafeRide × Mobility**, **JAAGI × LegalTech**.
+Misfit: **JAAGI × Mobility**. Strategy call: **curate, don't blanket** — the shipped `proof`-map
+curation is the honest structure; the docx's "all 3 in all 6" grid is a regression.
+- ⚠️ **P0 overclaims are LIVE in the code** (not just the docx): `src/data/projects.js` + `src/data/sectors.js`
+  carry "air-gapped by default / zero outbound calls", "fully air-gapped", SafeRide "SMS to emergency
+  contacts", "12 languages", "0 false positives". **Fix these when wiring the rewrite in.**
+- **Audit artifact (private):** https://claude.ai/code/artifact/45cbe49b-8661-4207-ab67-496b454c5945
+
+**B2 — Marketing-maturity rule (owner, this session):** projects ARE prototypes but we **never market
+them as prototypes** ("MVP / v0.2 / ~55% ready" is banned). Honesty = don't CLAIM maturity we lack; it
+does NOT mean volunteering immaturity. Use attractive-but-true status framing ("in live pilot with an
+NCR developer", "in early access"). Saved to memory `feedback_marketing_maturity.md`.
+
+**B3 — Rewrite** (7 agents: 3 neuromarketing registers → judge panel [clarity / persuasion / honesty] →
+synthesis). Output = non-technical, benefit-led, honesty-clean (verified **0** banned terms),
+plain-English product labels ("Ask-Your-Documents Assistant", "In-Cab Safety Guardian", "Your Private AI
+Copilot"), curated **lead / support / set-aside** per industry. Full copy → [`section5-rewrite.md`](./section5-rewrite.md).
+- **Rewrite artifact (private):** https://claude.ai/code/artifact/4e556fb5-80cc-42d8-af29-25832c509bf5
+- Notable call: **SaaS/GCC leads AirRAG, not JAAGI** (differs from the shipped proof-map) — headlining a
+  single-user desktop tool to a GCC would breach the honesty wall. **Owner to confirm.**
+
+### Open for next session (2026-07-15)
+1. **Finalise the per-industry card copy** line-by-line using [`section5-rewrite.md`](./section5-rewrite.md).
+2. Decide structure: keep the honest "set aside" rows, or show only **lead + support** per industry.
+3. Confirm the **SaaS/GCC → AirRAG-lead** swap vs the shipped proof-map.
+4. Then **wire into code:** corrected copy into `sectors.js`/`projects.js`, **fix the live P0 overclaims**,
+   align Work industry-mode to lead/support.
+5. Finalise Work sub-copy wording.
 
 ---
 
